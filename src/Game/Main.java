@@ -1,9 +1,6 @@
 package Game;
 
-import Game.visual.UI;
-
-import javax.swing.*;
-import java.awt.*;
+import Game.Visual.UI;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,6 +1,4 @@
-package Game.visual;
-
-import Game.GameInformation;
+package Game.Visual;
 
 import javax.swing.*;
 import java.util.ArrayList;
