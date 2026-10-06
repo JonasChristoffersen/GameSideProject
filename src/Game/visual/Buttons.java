@@ -10,4 +10,11 @@ public class Buttons {
 
     }
 
+    public void setButton(int x, int y, int w, int h) {
+        this.button.setBounds(x,y,w,h);
+    }
+
+    public JButton getButton() {
+        return button;
+    }
 }
