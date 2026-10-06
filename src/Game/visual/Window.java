@@ -13,6 +13,9 @@ public class Window {
         this.window = new JFrame(name);
         this.panels = new ArrayList<Panels>();
         window.setLayout(null);
+        window.setSize(600,600);
+        window.setVisible(true);
+        window.setResizable(false);
     }
 
 

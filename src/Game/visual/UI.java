@@ -3,10 +3,12 @@ package Game.visual;
 import Game.GameInformation;
 
 public class UI {
-    public void makeUI() {
-        Window mainWindow = new Window(GameInformation.getNameOfGame());
-        Panels SideBar = new Panels();
-
+    public static void makeUI() {
+            Window mainWindow = new Window(GameInformation.getNameOfGame());
+            Panels sideBar = new Panels(400, 0, 200, 600);
+            Buttons button = new Buttons("Hvede", 0, 0, 200, 100);
+            sideBar.addButon(button);
+            mainWindow.addPanel(sideBar);
     }
 
 }

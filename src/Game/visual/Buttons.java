@@ -5,8 +5,10 @@ import javax.swing.*;
 public class Buttons {
     private JButton button;
 
-    Buttons(String text) {
+    Buttons(String text, int x, int y, int w, int h) {
         this.button = new JButton(text);
+        setButton(x,y,w,h);
+
 
     }
 

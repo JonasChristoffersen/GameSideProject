@@ -11,6 +11,7 @@ public class Panels {
         this.panel = new JPanel(null);
         panel.setLayout(null);
         panel.setBounds(x, y, w, h);
+        this.buttons = new ArrayList<>();
     }
 
     public ArrayList<Buttons> getButtons() {
