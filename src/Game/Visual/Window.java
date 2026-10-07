@@ -12,7 +12,8 @@ public class Window {
         window.setSize(600,600);
         window.setVisible(true);
         window.setResizable(true);
-        window.setLocation(200,200);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setLocationRelativeTo(null);
     }
 
 

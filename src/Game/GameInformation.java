@@ -16,7 +16,7 @@ public class GameInformation {
         points = points;
     }
 
-    public static void addPoints(int points) {
-        points += points;
+    public static void addPoints(int point) {
+        points += point;
     }
 }
