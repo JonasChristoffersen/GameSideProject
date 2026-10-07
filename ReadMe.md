@@ -12,6 +12,7 @@ Here is tasks that is listed for this project.
 - Implement level logic
 - Time management component is created
 - Create new methods in UI such as "makeSidePanels"
+- Fix UI not loading (Sometimes multiple launches of game is need to display UI correctly!)
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
