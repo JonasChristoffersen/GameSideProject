@@ -29,7 +29,7 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 ---
 
-### ✅ Resolved tasks ✅</p>
+### ✅ Resolved tasks ✅
 
 - Get a hang of basic Jframe usage
 - Save game
@@ -39,3 +39,9 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Create and display moneyPanel (Missing real time data/updates)
 - Create and display levelPanel (Missing real time data/updates)
 - Create and display clickPrSecPanel (Missing real time data/updates)
+
+---
+
+### 🔗 Usefull links 🔗
+
+- link to mockup drawings: https://excalidraw.com/#json=1kRZQga_evZcjVHlAqrC2,vE0JO-MgsxpR0mjKnjJ1Cw
