@@ -44,4 +44,4 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 ### 🔗 Usefull links 🔗
 
-- link to mockup drawings: https://excalidraw.com/#json=1kRZQga_evZcjVHlAqrC2,vE0JO-MgsxpR0mjKnjJ1Cw
+- [Mockup drawings](https://excalidraw.com/#json=1kRZQga_evZcjVHlAqrC2,vE0JO-MgsxpR0mjKnjJ1Cw)
