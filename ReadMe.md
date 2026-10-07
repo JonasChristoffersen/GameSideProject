@@ -17,7 +17,7 @@ Here is tasks that is listed for this project.
 
 ### 🤓 Tasks that we are current working on 🤓
 
-- 
+- Display money/points in buttom left corner (Jonas)
 - 
 - 
 
