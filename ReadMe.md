@@ -1,6 +1,8 @@
-## Current tasks
+# 🌾 Side project "Crop Clicker A/S" 🌾
 
-Here is tasks that is listed for this project. 
+This project is created by 3 computer science students. The project is meant to be a fun challenge, and is souly created in our sparetime.
+
+The game we are developing is scoped to be a clicker/tycoon game. User should be able to use the mouse to click certain items, buy upgrades, earn achievements and maybe more.
 
 ---
 
@@ -10,22 +12,36 @@ Here is tasks that is listed for this project.
 - Create options window
 - Map out level logic
 - Implement level logic
-- Time management component is created
+- Time management component is created - Implement this when needed (Andreas is the lead on this)
 - Create new methods in UI such as "makeSidePanels"
-- Fix UI not loading (Sometimes multiple launches of game is need to display UI correctly!) (This is due to the following line "this.setVisible(true);")
+- Change color of buttons when they are pressed? (Current blue is not fitting to the theme)
+- Maybe make window of game more rectangular? (This will require quite a lot of rework to current GUI)
+- Add real time display to money label (Currently only updated when launching game)
+- Add real time display to level label (Currently only updated when launching game)
+- Add real time display to click pr second (Currently not static feild without a variable!)
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
 
-- Display money/points in buttom left corner (Jonas)
-- 
-- 
+-
+-
+-
 
 ---
 
-### ✅ Resolved tasks ✅</p>
+### ✅ Resolved tasks ✅
 
 - Get a hang of basic Jframe usage
 - Save game
 - Time management
 - Farming panel/CenterPanel
+- Fix GUI not loading when launching program
+- Create and display moneyPanel (Missing real time data/updates)
+- Create and display levelPanel (Missing real time data/updates)
+- Create and display clickPrSecPanel (Missing real time data/updates)
+
+---
+
+### 🔗 Usefull links related to project 🔗
+
+- [Mockup drawings](https://excalidraw.com/#json=1kRZQga_evZcjVHlAqrC2,vE0JO-MgsxpR0mjKnjJ1Cw)
