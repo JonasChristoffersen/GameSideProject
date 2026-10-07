@@ -1,9 +1,10 @@
 package Game;
 
 public class GameInformation {
-    private static int points = 0;
-    private static int level = 0;
+    private static int points;
+    private static int level;
     private static String nameOfGame = "Crop Clikker A/S";
+    private static String savedDataPath = "src/Game/Saves/SavedData.csv";
 
     public static int getPoints() {
         return points;
@@ -14,7 +15,7 @@ public class GameInformation {
     }
 
     public static void setPoints(int points) {
-        points = points;
+        GameInformation.points = points;
     }
 
     public static void addPoints(int point) {
@@ -27,5 +28,9 @@ public class GameInformation {
 
     public static void setLevel(int level) {
         GameInformation.level = level;
+    }
+
+    public static String getSavedDataPath() {
+        return savedDataPath;
     }
 }

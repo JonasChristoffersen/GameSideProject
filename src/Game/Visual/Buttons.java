@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Supplier;
 
+import Game.Saves.SaveGame;
+
 public class Buttons extends JButton{
     private Crops crop;
 
@@ -20,6 +22,17 @@ public class Buttons extends JButton{
             @Override
             public void actionPerformed(ActionEvent e) {
                 crop.actionPerformed(crop);
+            }
+        });
+    }
+
+    //Used for saving the game
+    Buttons(int x, int y, int w, int h) {
+        this.setBounds(x,y,w,h);
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SaveGame.userSaveAction();
             }
         });
     }
