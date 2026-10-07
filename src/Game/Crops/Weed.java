@@ -23,4 +23,8 @@ public class Weed extends Crops {
     public void setPoints(int points) {
         this.points = points;
     }
+
+    public String getName() {
+        return name;
+    }
 }

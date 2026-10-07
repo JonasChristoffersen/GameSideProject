@@ -22,4 +22,8 @@ public abstract class Crops implements ActionListener {
     public int getPoints() {
         return points;
     }
+
+    public String getName() {
+        return name;
+    }
 }

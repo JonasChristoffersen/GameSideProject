@@ -12,10 +12,10 @@ public class Buttons {
     private Crops crop;
 
 
-    Buttons(String text, int x, int y, int w, int h, Supplier<Crops> cropsSupplier) {
-        this.button = new JButton(text);
-        setButton(x,y,w,h);
+    Buttons(int x, int y, int w, int h, Supplier<Crops> cropsSupplier) {
         this.crop = cropsSupplier.get();
+        this.button = new JButton(crop.getName());
+        setButton(x,y,w,h);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
