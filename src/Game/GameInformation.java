@@ -2,6 +2,7 @@ package Game;
 
 public class GameInformation {
     private static int points = 0;
+    private static int level = 0;
     private static String nameOfGame = "Crop Clikker A/S";
 
     public static int getPoints() {
@@ -18,5 +19,13 @@ public class GameInformation {
 
     public static void addPoints(int point) {
         points += point;
+    }
+
+    public static int getLevel() {
+        return level;
+    }
+
+    public static void setLevel(int level) {
+        GameInformation.level = level;
     }
 }
