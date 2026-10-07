@@ -1,7 +1,5 @@
 ## Current tasks
 
----
-
 Here is tasks that is listed for this project. 
 
 ---
