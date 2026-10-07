@@ -11,5 +11,3 @@
 - "Save game" (Jonas)
 - "Time management" (Andreas)
 - "Farming panel/CenterPanel" (Mathias)
-
-
