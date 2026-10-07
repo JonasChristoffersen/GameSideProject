@@ -10,10 +10,17 @@ public class Weed extends Crops {
     private String name = "Weed";
 
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        GameInformation.setPoints(points);
+
+    }
+
+    @Override
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

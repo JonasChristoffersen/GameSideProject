@@ -13,7 +13,8 @@ public class Window {
         window.setLayout(null);
         window.setSize(600,600);
         window.setVisible(true);
-        window.setResizable(false);
+        window.setResizable(true);
+        window.setLocation(200,200);
     }
 
 
