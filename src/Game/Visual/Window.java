@@ -3,7 +3,7 @@ package Game.Visual;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Window {
+public class Window extends JFrame {
     private JFrame window;
 
     Window(String name) {
