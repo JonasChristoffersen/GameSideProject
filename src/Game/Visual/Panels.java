@@ -11,10 +11,4 @@ public class Panels extends JPanel{
         this.setBounds(x, y, w, h);
     }
 
-    public void addthings(ArrayList<Buttons> array) {
-        for (Buttons l : array) {
-            add(l.getButton());
-        }
-    }
-
 }

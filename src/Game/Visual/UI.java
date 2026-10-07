@@ -9,8 +9,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class UI {
-    static ArrayList<Buttons> sideBarButtons = new ArrayList<>();
-    static ArrayList<Buttons> farmingPlotButtons = new ArrayList<>();
     public static void makeUI() {
         Window mainWindow = new Window(GameInformation.getNameOfGame());
         Panels sideBar = new Panels(400, 0, 200, 600);
@@ -19,11 +17,9 @@ public class UI {
         centerPanel.setBackground(new Color(17, 122, 26));
 
 
-        farmingPlotButtons.add(new Buttons(100,100,100,100, Weed::new));
-        farmingPlotButtons.add(new Buttons(200,100,100,100, Tomatos::new));
+        centerPanel.add(new Buttons(100,100,100,100, Weed::new));
+        centerPanel.add(new Buttons(200,100,100,100, Tomatos::new));
 
-        //sideBar.addthings(sideBarButtons);
-        centerPanel.addthings(farmingPlotButtons);
 
         //Save game button
         Buttons saveButton = new Buttons(0, 0 ,100, 50);
