@@ -7,29 +7,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Supplier;
 
-public class Buttons {
-    private JButton button;
+public class Buttons extends JButton{
     private Crops crop;
 
 
     Buttons(int x, int y, int w, int h, Supplier<Crops> cropsSupplier) {
         this.crop = cropsSupplier.get();
-        this.button = new JButton(crop.getName());
-        setButton(x,y,w,h);
-        button.addActionListener(new ActionListener() {
+        this.setText(crop.getName());
+        this.setBounds(x,y,w,h);
+        this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 crop.actionPerformed(crop);
             }
         });
-
-
     }
 
-    public void setButton(int x, int y, int w, int h) {
-        this.button.setBounds(x,y,w,h);
+    public Buttons getButton() {
+        return this;
     }
-    public JButton getButton() {
-        return button;
-    }
+
+
 }

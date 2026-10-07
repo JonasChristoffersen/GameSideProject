@@ -5,6 +5,7 @@ import Game.Crops.Weed;
 import Game.GameInformation;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class UI {
@@ -12,6 +13,8 @@ public class UI {
     public static void makeUI() {
             Window mainWindow = new Window(GameInformation.getNameOfGame());
             Panels sideBar = new Panels(400, 0, 200, 600);
+            Panels centerPanel = new Panels(0, 50, 400, 450);
+            centerPanel.setBackground(new Color(17, 122, 26));
 
 
             sideBarButtons.add(new Buttons(0,0,200,100, Weed::new));
@@ -19,6 +22,7 @@ public class UI {
 
             sideBar.addthings(sideBarButtons);
 
-            mainWindow.addPanel(sideBar);
+            mainWindow.add(sideBar);
+            mainWindow.add(centerPanel);
     }
 }
