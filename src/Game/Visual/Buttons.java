@@ -17,6 +17,7 @@ public class Buttons extends JButton{
         this.crop = cropsSupplier.get();
         this.setText(crop.getName());
         this.setBounds(x,y,w,h);
+        this.setIcon(crop.getImage());
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
