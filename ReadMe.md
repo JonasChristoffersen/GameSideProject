@@ -24,6 +24,7 @@ Here is tasks that is listed for this project.
 
 ### ✅ Resolved tasks ✅</p>
 
+- Get a hang of basic Jframe usage
 - Save game
 - Time management
 - Farming panel/CenterPanel
