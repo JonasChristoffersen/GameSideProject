@@ -23,9 +23,9 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 ### 🤓 Tasks that we are current working on 🤓
 
-- Display money in bottom left corner (Jonas)
-- Display level in bottom right corner (Jonas)
-- Display click pr second in bottom right corner (Jonas)
+-
+-
+-
 
 ---
 
@@ -36,3 +36,6 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Time management
 - Farming panel/CenterPanel
 - Fix GUI not loading when launching program
+- Create and display moneyPanel (Missing real time data/updates)
+- Create and display levelPanel (Missing real time data/updates)
+- Create and display clickPrSecPanel (Missing real time data/updates)
