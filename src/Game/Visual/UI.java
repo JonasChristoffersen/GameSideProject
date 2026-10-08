@@ -105,7 +105,15 @@ public class UI {
         moneyDisplayPanel.add(moneyLabelAmount);
         moneyDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        return makeCenterPanel();
+        TimerTask displayMoney = new TimerTask() {
+            @Override
+            public void run() {
+                moneyLabelAmount.setText(String.valueOf(GameInformation.getPoints()));
+            }
+        };
+        timer.schedule(displayMoney,0,10);
+
+        return moneyDisplayPanel;
     }
 
 
