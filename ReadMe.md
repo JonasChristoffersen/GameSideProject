@@ -48,6 +48,8 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 - When using macro, it is possible to go into minus balance! ![img.png](doc/BugImages/MinusBalance.png)
 
+---
+
 ### 🔗 Usefull links related to project 🔗
 
 - [Mockup drawings](https://excalidraw.com/#json=1kRZQga_evZcjVHlAqrC2,vE0JO-MgsxpR0mjKnjJ1Cw)

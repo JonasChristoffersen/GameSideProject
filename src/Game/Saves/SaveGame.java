@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import Game.GameInformation;
-import Game.Upgrades.Upgrades;
 
 public class SaveGame {
     //Easy to scall up for storing more data!

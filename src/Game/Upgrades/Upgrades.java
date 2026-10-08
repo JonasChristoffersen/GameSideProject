@@ -10,13 +10,12 @@ public class Upgrades implements ActionListener {
     private String name;
     private int pointsPerSecond;
     private int cost;
-    private int amount ;
+    private static int amount;
     //TODO: add icon for upgrades.
     Upgrades(String name, int pointsPerSecond, int cost) {
         this.name = name;
         this.pointsPerSecond = pointsPerSecond;
         this.cost = cost;
-        this.amount = 0;
     }
 
     public void actionPerformed(Upgrades type){
@@ -47,9 +46,16 @@ public class Upgrades implements ActionListener {
         return name;
     }
 
-    public int getAmount() {
+    //Made this static to be able to save data in CSV file
+    public static int getAmount() {
         return amount;
     }
+
+    //Tried to create this method for loading data (Not working yet)
+    public static void setAmount(int amount) {
+        Upgrades.amount = amount;
+    }
+
     public void increaseCost(){
         cost *= 1.1;
     }
