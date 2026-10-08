@@ -19,6 +19,7 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Add real time display to money label (Currently only updated when launching game)
 - Add real time display to level label (Currently only updated when launching game)
 - Add real time display to click pr second (Currently not static feild without a variable!)
+- Fix saved data to also hold click pr sec
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
