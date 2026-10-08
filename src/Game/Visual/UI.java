@@ -7,6 +7,8 @@ import Game.GameInformation;
 import javax.swing.*;
 import javax.swing.plaf.IconUIResource;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class UI {
     public static void makeUI() {
@@ -44,7 +46,22 @@ public class UI {
         moneyLabelAmount.setText(String.valueOf(GameInformation.getPoints())); //Fix this to display real time amount!
         moneyLabelAmount.setBounds(10, 20, 100, 30);
         moneyDisplayPanel.add(moneyLabelAmount);
-
+        //Money updater Display and m/ps
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                moneyLabelAmount.setText(String.valueOf(GameInformation.getPoints())); //Fix this to display real time amount!
+            }
+        };
+        TimerTask task2 = new TimerTask() {
+            @Override
+            public void run() {
+                GameInformation.addPoints(1);
+            }
+        };
+        timer.schedule(task, 0 , 10); // starts when the program startsup, runs every 1 second
+        timer.schedule(task2, 0,1000); //runs everysecond
         //Click pr sec panel
         Panels clickDisplayPanel = new Panels(150,505,100, 50);
         clickDisplayPanel.setBackground(new Color(211, 211, 211));
@@ -78,6 +95,8 @@ public class UI {
         moneyDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         clickDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         levelDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+
 
         //Add elements to mainWindow
         mainWindow.add(sideBar);

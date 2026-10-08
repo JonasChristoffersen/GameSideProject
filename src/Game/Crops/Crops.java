@@ -23,9 +23,7 @@ public abstract class Crops implements ActionListener {
     }
 
     public void actionPerformed(Crops type){
-        System.out.println(type.getName());
         GameInformation.addPoints(type.getPoints());
-        System.out.println(type.getPoints());
         System.out.println(GameInformation.getPoints());
     }
 
