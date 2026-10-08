@@ -1,0 +1,51 @@
+Here is a list of farming equipment that maybe can be used for upgrades when we move further?
+
+Hoe
+Rake
+Pickaxe
+Hand Trowel
+Watering Can
+Wheelbarrow
+Garden Fork
+Scythe
+Sickle
+Pruning Shears
+Hedge Trimmer
+Seed Drill
+Seed Spreader
+Fertilizer Spreader
+Sprinkler
+Irrigation System
+Water Pump
+Garden Hose
+Lawn Mower
+Brush Cutter
+Cultivator
+Rototiller
+Plow
+Harrow
+Disc Harrow
+Tiller
+Tractor
+Mini Tractor
+Tractor Trailer
+Front Loader
+Backhoe Loader
+Excavator
+Combine Harvester
+Forage Harvester
+Potato Harvester
+Hay Baler
+Hay Rake
+Hay Tedder
+Mower Conditioner
+Grain Cart
+Grain Elevator
+Grain Dryer
+Seed Cleaner
+Crop Sprayer
+Fertilizer Spreader
+Irrigation Cannon
+Greenhouse
+Automated Harvester
+Farming Robot
