@@ -20,6 +20,7 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Add real time display to level label (Currently only updated when launching game)
 - Add real time display to click pr second (Currently not static feild without a variable!)
 - Display next available upgrade when a certain mps has been reached 
+- Center cost price of upgrades when more digits appears
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
@@ -42,6 +43,10 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Create and display clickPrSecPanel (Missing real time data/updates)
 
 ---
+
+### 🐛 Known bugs 
+
+- When using macro, it is possible to go into minus balance! ![img.png](doc/BugImages/MinusBalance.png)
 
 ### 🔗 Usefull links related to project 🔗
 
