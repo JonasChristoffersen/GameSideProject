@@ -3,10 +3,13 @@ package Game.Visual;
 import Game.Crops.Tomatos;
 import Game.Crops.Weed;
 import Game.GameInformation;
+import Game.Upgrades.Shovel;
 
 import javax.swing.*;
 import javax.swing.plaf.IconUIResource;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class UI {
     public static void makeUI() {
@@ -19,6 +22,9 @@ public class UI {
         //Added white background to icons to get rid of the blue standard color
         centerPanel.add(new Buttons(100,100,100,100, Weed::new)).setBackground(Color.white);
         centerPanel.add(new Buttons(200,100,100,100, Tomatos::new)).setBackground(Color.white);
+
+        sideBar.add(new Buttons(0, 0, 200, 100, new Shovel()));
+
 
         //Top background panel
         Panels topBackGroundPanel = new Panels(0,0,600,61);
@@ -41,9 +47,13 @@ public class UI {
         moneyLabelText.setBounds(10, 0, 100, 30);
         moneyDisplayPanel.add(moneyLabelText);
         JLabel moneyLabelAmount = new JLabel();
-        moneyLabelAmount.setText(String.valueOf(GameInformation.getPoints())); //Fix this to display real time amount!
+       // moneyLabelAmount.setText(String.valueOf(GameInformation.getPoints())); //Fix this to display real time amount!
         moneyLabelAmount.setBounds(10, 20, 100, 30);
         moneyDisplayPanel.add(moneyLabelAmount);
+        Timer timer = new Timer();
+        
+        
+        
 
         //Click pr sec panel
         Panels clickDisplayPanel = new Panels(150,505,100, 50);
@@ -53,10 +63,26 @@ public class UI {
         clickLabelText.setBounds(10, 0, 100, 30);
         clickDisplayPanel.add(clickLabelText);
         JLabel clickLabelAmount = new JLabel();
-        clickLabelAmount.setText("No variable"); //Fix this to display real time amount!
+       // clickLabelAmount.setText("No variable"); //Fix this to display real time amount!
         clickLabelAmount.setBounds(10, 20, 100, 30);
         clickDisplayPanel.add(clickLabelAmount);
-
+        TimerTask updatePoints = new TimerTask() {
+            @Override
+            public void run() {
+                GameInformation.addPoints(GameInformation.getPointsPerSecond());
+            }
+        };
+        TimerTask updatePointsPerSecond = new TimerTask() {
+            @Override
+            public void run() {
+                clickLabelAmount.setText(String.valueOf(GameInformation.getPointsPerSecond()));
+                moneyLabelAmount.setText(String.valueOf(GameInformation.getPoints()));
+            }
+        };
+        timer.schedule(updatePointsPerSecond,0, 100);
+        timer.schedule(updatePoints, 0, 1000);
+        
+        
         //Level panel
         Panels levelDisplayPanel = new Panels(295,505,100, 50);
         levelDisplayPanel.setBackground(new Color(211, 211, 211));
