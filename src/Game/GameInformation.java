@@ -2,6 +2,7 @@ package Game;
 
 public class GameInformation {
     private static int points;
+    private static int pointsPerSecond;
     private static int level;
     private static String nameOfGame = "Crop Clikker A/S";
     private static String savedDataPath = "src/Game/Saves/SavedData.csv";
@@ -33,4 +34,17 @@ public class GameInformation {
     public static String getSavedDataPath() {
         return savedDataPath;
     }
+
+    public static int getPointsPerSecond() {
+        return pointsPerSecond;
+    }
+
+    public static void addPointsPerSecond(int amount) {
+        pointsPerSecond += amount;
+    }
+
+    public static void buy(int amount) {
+        points -= amount;
+    }
+
 }
