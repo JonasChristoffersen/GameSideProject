@@ -3,10 +3,11 @@ package Game.Visual;
 import Game.Crops.Tomatos;
 import Game.Crops.Weed;
 import Game.GameInformation;
+import Game.Upgrades.Bucket;
+import Game.Upgrades.CreateUpgrades;
 import Game.Upgrades.Shovel;
 
 import javax.swing.*;
-import javax.swing.plaf.IconUIResource;
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -154,7 +155,9 @@ public class UI {
     public static Panels makeSideBar() {
         Panels sideBar = new Panels(400, 0, 200, 600);
         sideBar.setBackground(Color.gray);
-        sideBar.add(new Buttons(0, 0, 200, 100, new Shovel()));
+        sideBar.add(new Buttons(0, 0, 200, 100, CreateUpgrades.getShovel()));
+        sideBar.setBorder(BorderFactory.createLineBorder(Color.black));
+        sideBar.add(new Buttons(0, 150, 200, 100, CreateUpgrades.getBucket()));
         sideBar.setBorder(BorderFactory.createLineBorder(Color.black));
 
 

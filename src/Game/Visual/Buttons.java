@@ -18,6 +18,7 @@ public class Buttons extends JButton{
     private Upgrades upgrade;
     private Timer timer;
     private TimerTask task;
+    private SaveGame saveGame = new SaveGame();
 
     //Plot buttons
     Buttons(int x, int y, int w, int h, Supplier<Crops> cropsSupplier) {
@@ -39,7 +40,7 @@ public class Buttons extends JButton{
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SaveGame.userSaveAction();
+                saveGame.userSaveAction();
             }
         });
     }

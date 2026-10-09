@@ -5,10 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import Game.GameInformation;
+import Game.Upgrades.CreateUpgrades;
 
 //Created with scalability in mind (Therefore a while loop that could handle multiple players)
 public class LoadSavedData {
-    public static void loadSave() {
+    public void loadSave() {
         File file = new File(GameInformation.getSavedDataPath());
         try {
             Scanner scan = new Scanner(file);
@@ -18,6 +19,7 @@ public class LoadSavedData {
                 String[] values = s.split(",");
                 GameInformation.setPoints(Integer.parseInt(values[0].trim())); //Sets points to saved amount
                 GameInformation.setLevel(Integer.parseInt(values[1].trim())); //Sets level to saved amount
+                CreateUpgrades.setAmount(CreateUpgrades.getShovel());
             }
         } catch (FileNotFoundException e) {
             GameInformation.setPoints(0); //If no file is found, set points to 0

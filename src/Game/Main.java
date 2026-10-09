@@ -5,7 +5,9 @@ import Game.Visual.UI;
 
 public class Main {
     public static void main(String[] args) {
-        LoadSavedData.loadSave();
+        LoadSavedData loadSavedData = new LoadSavedData();
+
+        loadSavedData.loadSave();
         UI.makeUI();
     }
 }

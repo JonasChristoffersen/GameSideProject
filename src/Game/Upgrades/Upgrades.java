@@ -10,7 +10,7 @@ public class Upgrades implements ActionListener {
     private String name;
     private int pointsPerSecond;
     private int cost;
-    private int amount ;
+    private int amount;
     //TODO: add icon for upgrades.
     Upgrades(String name, int pointsPerSecond, int cost) {
         this.name = name;
@@ -50,6 +50,11 @@ public class Upgrades implements ActionListener {
     public int getAmount() {
         return amount;
     }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public void increaseCost(){
         cost *= 1.1;
     }
