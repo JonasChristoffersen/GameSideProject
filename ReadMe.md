@@ -50,6 +50,13 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 ---
 
+### ⭐ Features we want to implement at some point ⭐
+
+- Growable stages that graduly increates yeild from crop
+- Rebirth
+
+---
+
 ### 🔗 Usefull links related to project 🔗
 
 - [Mockup drawings](https://excalidraw.com/#json=1kRZQga_evZcjVHlAqrC2,vE0JO-MgsxpR0mjKnjJ1Cw)
