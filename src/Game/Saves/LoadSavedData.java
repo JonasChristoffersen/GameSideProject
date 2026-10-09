@@ -19,11 +19,15 @@ public class LoadSavedData {
                 String[] values = s.split(",");
                 GameInformation.setPoints(Integer.parseInt(values[0].trim())); //Sets points to saved amount
                 GameInformation.setLevel(Integer.parseInt(values[1].trim())); //Sets level to saved amount
-                CreateUpgrades.setAmount(CreateUpgrades.getShovel());
+                CreateUpgrades.setAmount(CreateUpgrades.getShovel(), Integer.parseInt(values[3].trim())); //Sets shovel to saved amount
+                CreateUpgrades.setAmount(CreateUpgrades.getBucket(), Integer.parseInt(values[4].trim())); //Sets bucket to saved amount
+                GameInformation.loadPointsPerSecond(); //Sets pointsPerSec
             }
         } catch (FileNotFoundException e) {
             GameInformation.setPoints(0); //If no file is found, set points to 0
             GameInformation.setLevel(0); //If no file is found, set level to 0
+            CreateUpgrades.setAmount(CreateUpgrades.getShovel(),0); //If no file is found, set shovel amount to 0
+            CreateUpgrades.setAmount(CreateUpgrades.getBucket(),0); //If no file is found, set bucket amount to 0
             System.out.println(e.getMessage());
         }
     }

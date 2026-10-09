@@ -4,8 +4,8 @@ public class CreateUpgrades {
     private static Shovel shovel = new Shovel();
     private static Bucket bucket = new Bucket();
 
-    public static void setAmount(Upgrades upgradeItem) {
-
+    public static void setAmount(Upgrades upgradeItem, int amount) {
+        upgradeItem.setAmount(amount);
     }
 
     public static Shovel getShovel() {
