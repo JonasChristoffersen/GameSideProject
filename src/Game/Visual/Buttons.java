@@ -78,6 +78,7 @@ public class Buttons extends JButton{
                 upgrade.actionPerformed(upgrade);
                 upgradeCount.setText(String.valueOf(upgrade.getAmount()));
                 upgradeCost.setText("Cost: " + upgrade.getCost());
+                UI.updateMoneyPerSecond();
             }
         });
 
