@@ -56,6 +56,10 @@ public class Upgrades implements ActionListener {
         Upgrades.amount = amount;
     }
 
+/*    public static void increaseAmount(Upgrades type) {
+        type.getClass().getSimpleName()
+    }*/
+
     public void increaseCost(){
         cost *= 1.1;
     }

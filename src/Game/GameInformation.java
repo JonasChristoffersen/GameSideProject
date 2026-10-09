@@ -1,5 +1,9 @@
 package Game;
 
+import Game.Upgrades.Upgrades;
+
+import java.util.ArrayList;
+
 public class GameInformation {
     private static int points;
     private static int pointsPerSecond;
