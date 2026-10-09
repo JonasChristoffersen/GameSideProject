@@ -60,6 +60,7 @@ public class UI {
         moneyPerSecondAmount = new JLabel();
         moneyPerSecondAmount.setBounds(10, 20, 100, 30);
         moneyPerSecond.add(moneyPerSecondAmount);
+        moneyPerSecondAmount.setText(String.valueOf(GameInformation.getPointsPerSecond()));
         TimerTask updateMoney= new TimerTask() {
             @Override
             public void run() {

@@ -8,6 +8,7 @@ public class CreateUpgrades {
         upgradeItem.setAmount(amount);
     }
 
+
     public static Shovel getShovel() {
         return shovel;
     }
