@@ -7,7 +7,9 @@ public class CreateUpgrades {
     public static void setAmount(Upgrades upgradeItem, int amount) {
         upgradeItem.setAmount(amount);
     }
-
+    public static void setStartAmount(Upgrades upgrades){
+        upgrades.setPrice(upgrades.getCost() * (int) (upgrades.getAmount() * 1.1));
+    }
 
     public static Shovel getShovel() {
         return shovel;
