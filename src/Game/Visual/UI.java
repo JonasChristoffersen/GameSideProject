@@ -13,6 +13,8 @@ import java.util.TimerTask;
 
 public class UI {
     private static Timer timer = new Timer();
+    private static JLabel moneyPerSecondAmount;
+
     public static void makeUI() {
         //TODO: Can we move the creation of panel out to other places???
         Window mainWindow = new Window(GameInformation.getNameOfGame());
@@ -54,7 +56,7 @@ public class UI {
         moneyPerSecondLabel.setText("Money pr Second");
         moneyPerSecondLabel.setBounds(10, 0, 100, 30);
         moneyPerSecond.add(moneyPerSecondLabel);
-        JLabel moneyPerSecondAmount = new JLabel();
+        moneyPerSecondAmount = new JLabel();
         moneyPerSecondAmount.setBounds(10, 20, 100, 30);
         moneyPerSecond.add(moneyPerSecondAmount);
         TimerTask updateMoney= new TimerTask() {
@@ -63,14 +65,8 @@ public class UI {
                 GameInformation.addPoints(GameInformation.getPointsPerSecond());
             }
         };
-        TimerTask updateMoneyPerSecond = new TimerTask() {
-            @Override
-            public void run() {
-                moneyPerSecondAmount.setText(String.valueOf(GameInformation.getPointsPerSecond()));
-            }
-        };
+
         moneyPerSecond.setBorder(BorderFactory.createLineBorder(Color.black));
-        timer.schedule(updateMoneyPerSecond,0, 100);
         timer.schedule(updateMoney, 0, 1000);
 
         return moneyPerSecond;
@@ -163,5 +159,9 @@ public class UI {
 
 
         return sideBar;
+    }
+
+    public static void updateMoneyPerSecond() {
+        moneyPerSecondAmount.setText(String.valueOf(GameInformation.getPointsPerSecond()));
     }
 }
