@@ -1,0 +1,102 @@
+@startuml
+
+class Main{
+    -GameState gameState
+    -SaveManager saveManager
+    -UI ui
+}
+
+class GameState{
+    -int money
+    -int moneyPerSecond
+    -ArrayList<Upgrade> upgrades
+    -ArrayList<Crop> crops
+    -String gameName
+    -String savedDataPath
+    +ArrayList<Upgrade> getUpgrades()
+    +ArrayList<Crop> getCrops()
+}
+
+class UI{
+    -Timer timer
+    -GameState gameState
+    +UI(GameState)
+    +void createUI()
+}
+
+class Window{
+    -GameState gameState
+    +Window(GameState)
+}
+
+class Panel{
+    -GameState gameState
+    +Panel(GameState)
+}
+
+class Button{
+    -GameState gameState
+    +Button(GameState)
+}
+
+class UpgradeButton{
+}
+
+class PlotButton{
+}
+
+class SaveButton{
+}
+
+abstract class Upgrade{
+    -String name
+    -int baseCost
+    -int count
+    +Upgrade(String, int)
+    +getCost()
+}
+
+class PerSecondUpgrade{
+    +super(String, int)
+    -int moneyPerSecond
+}
+
+class ClickUpgrade
+
+class Crop{
+    -String name
+    -int moneyPerClick
+    -ImageIcon image
+    -boolean isUnlocked
+    +Crop(String, int, ImageIcon)
+}
+
+class SaveManager{
+    +void saveGame()
+    +void loadSave()
+}
+
+Main *-- GameState
+Main *-- UI
+Main *--- SaveManager
+
+GameState *-- Upgrade
+Upgrade <|-- PerSecondUpgrade
+Upgrade <|-- ClickUpgrade
+GameState *-- Crop
+
+Button <|-- UpgradeButton
+Button <|-- PlotButton
+Button <|-- SaveButton
+
+UI *-- Window
+UI *-- Panel
+UI *-- Button
+
+/'
+JPanel <|-- Panel
+JFrame <|-- Window
+JButton <|-- Button
+'/
+
+@enduml
