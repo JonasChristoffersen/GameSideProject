@@ -16,8 +16,6 @@ public class Main {
         UI.makeUI();
         loadSavedData.loadSave();
 
-        CreateUpgrades.setStartAmount(CreateUpgrades.getBucket());
-        System.out.println(CreateUpgrades.getBucket().getAmount());
 
     }
 }

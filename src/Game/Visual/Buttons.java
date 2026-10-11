@@ -20,6 +20,7 @@ public class Buttons extends JButton{
     private TimerTask task;
     private SaveGame saveGame = new SaveGame();
 
+
     //Plot buttons
     Buttons(int x, int y, int w, int h, Supplier<Crops> cropsSupplier) {
         this.crop = cropsSupplier.get();

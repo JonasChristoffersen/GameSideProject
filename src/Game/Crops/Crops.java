@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.function.DoubleToIntFunction;
 import java.util.function.Supplier;
 
@@ -15,18 +17,53 @@ public abstract class Crops implements ActionListener {
     private int points;
     private int counter;
     private ImageIcon image;
+    private int timePassed = 1;
+    Timer timer = new Timer();
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            timePassed++;
+            if (timePassed == 10) {
+                task.cancel();
+                System.out.println("Task has been stopped for" + name);
+            }
+        }
+
+    };
 
     Crops(String name, int points, ImageIcon image) {
         this.name = name;
         this.points = points;
         this.image = image;
+        timer.scheduleAtFixedRate(task,0,1000);
     }
 
     public void actionPerformed(Crops type){
-        System.out.println(type.getName());
+        timer.purge();
+        System.out.println(timePassed);
+       if(timePassed > 6) {
+           GameInformation.addPoints(type.getPoints() + 3);
+           System.out.println(type.getPoints() + 3);
+           timePassed= 0;
+       }
+        else if (timePassed > 3) {
+            GameInformation.addPoints(type.getPoints() + 1);
+            System.out.println(type.getPoints() + 1);
+            timePassed = 0;
+        }
+        else {
         GameInformation.addPoints(type.getPoints());
         System.out.println(type.getPoints());
-        System.out.println(GameInformation.getPoints());
+        timePassed = 0;
+    }
+        try {
+            timer.scheduleAtFixedRate(task, 0, 1000);
+        } catch (Exception e) {
+
+        }
+
+
+
     }
 
     public void actionPerformed(ActionEvent e) {
