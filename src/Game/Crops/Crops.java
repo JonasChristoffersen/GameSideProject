@@ -24,7 +24,7 @@ public abstract class Crops implements ActionListener {
         public void run() {
             timePassed++;
             if (timePassed == 10) {
-                task.cancel();
+                timer.purge();
                 System.out.println("Task has been stopped for" + name);
             }
         }
@@ -43,17 +43,17 @@ public abstract class Crops implements ActionListener {
         System.out.println(timePassed);
        if(timePassed > 6) {
            GameInformation.addPoints(type.getPoints() + 3);
-           System.out.println(type.getPoints() + 3);
+           System.out.println("Stage 3:" + (type.getPoints() + 3));
            timePassed= 0;
        }
         else if (timePassed > 3) {
             GameInformation.addPoints(type.getPoints() + 1);
-            System.out.println(type.getPoints() + 1);
+            System.out.println("Stage 2: " + (type.getPoints() + 1));
             timePassed = 0;
         }
         else {
         GameInformation.addPoints(type.getPoints());
-        System.out.println(type.getPoints());
+        System.out.println("Stage 1;" + type.getPoints());
         timePassed = 0;
     }
         try {
