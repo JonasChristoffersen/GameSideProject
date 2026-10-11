@@ -9,4 +9,5 @@ public class Tomatos extends Crops{
     public Tomatos() {
         super("Tomatoes", 2, new ImageIcon("minecrafttomatoes.png"));
     }
+
 }

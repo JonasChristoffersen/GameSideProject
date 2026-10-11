@@ -11,4 +11,5 @@ public class Weed extends Crops {
     public Weed() {
         super("Weed", 1,new ImageIcon("minecraftwheat2.png"));
     }
+
 }
