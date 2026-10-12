@@ -1,22 +1,10 @@
 package Game.Crops;
-
 import Game.GameInformation;
-import Game.Main;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.Thread;
-import java.util.TimerTask;
-import java.util.function.DoubleToIntFunction;
-import java.util.function.Supplier;
-
-import static java.lang.Thread.currentThread;
-import static java.lang.Thread.interrupted;
 
 
-public abstract class Crops implements ActionListener {
+public abstract class Crops{
     private final String name;
     private final int points;
     private int counter;
@@ -24,12 +12,12 @@ public abstract class Crops implements ActionListener {
     private int timePassed = 0;
     private Timer timer;
 
-    Crops(String name, int points, ImageIcon image) {
+    Crops(String name, int points, ImageIcon image, int fullGrown) {
         this.name = name;
         this.points = points;
         this.image = image;
         timer = new Timer(1000, e -> {
-            if (timePassed < 10) {
+            if (timePassed < fullGrown) {
                 System.out.println(name + ": Time passed: " + timePassed);
                 timePassed++;
             }
@@ -62,9 +50,6 @@ public abstract class Crops implements ActionListener {
 
     }
 
-    public void actionPerformed(ActionEvent e) {
-
-    }
 
     public int getPoints() {
         return points;
@@ -78,23 +63,5 @@ public abstract class Crops implements ActionListener {
         return image;
     }
 
-    public int getTimePassed() {
-        return timePassed;
-    }
 
-    public void setTimePassed(int timePassed) {
-        this.timePassed += timePassed;
-    }
-
-    private void run() {
-        while (timePassed < 10) {
-            timePassed++;
-            System.out.println("test");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 }

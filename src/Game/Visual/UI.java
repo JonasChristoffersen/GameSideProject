@@ -3,9 +3,7 @@ package Game.Visual;
 import Game.Crops.Tomatos;
 import Game.Crops.Weed;
 import Game.GameInformation;
-import Game.Upgrades.Bucket;
 import Game.Upgrades.CreateUpgrades;
-import Game.Upgrades.Shovel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -143,8 +141,8 @@ public class UI {
         Panels centerPanel = new Panels(0, 50, 401, 450); //Set w to 401 so outline will look better up against sidepanel
         centerPanel.setBackground(new Color(17, 122, 26));
 
-        centerPanel.add(new Buttons(100,100,100,100, Weed::new)).setBackground(Color.white);
-        centerPanel.add(new Buttons(200,100,100,100, Tomatos::new)).setBackground(Color.white);
+        centerPanel.add(new Buttons(100,100,100,100, new Weed())).setBackground(Color.white);
+        centerPanel.add(new Buttons(200,100,100,100, new Tomatos())).setBackground(Color.white);
 
         centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 

@@ -22,8 +22,8 @@ public class Buttons extends JButton{
 
 
     //Plot buttons
-    Buttons(int x, int y, int w, int h, Supplier<Crops> cropsSupplier) {
-        this.crop = cropsSupplier.get();
+    Buttons(int x, int y, int w, int h, Crops crop) {
+        this.crop = crop;
         this.setText(crop.getName());
         this.setBounds(x,y,w,h);
         this.setIcon(crop.getImage());

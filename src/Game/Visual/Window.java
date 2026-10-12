@@ -1,7 +1,6 @@
 package Game.Visual;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class Window extends JFrame {
 

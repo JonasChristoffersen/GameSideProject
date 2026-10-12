@@ -6,5 +6,4 @@ public class Shovel extends Upgrades {
         super("Shovel", 1, 20);
     }
 
-
 }

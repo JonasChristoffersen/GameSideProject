@@ -1,6 +1,5 @@
 package Game.Upgrades;
 
-import Game.Crops.Crops;
 import Game.GameInformation;
 
 import java.awt.event.ActionEvent;
