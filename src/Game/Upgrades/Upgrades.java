@@ -1,7 +1,5 @@
 package Game.Upgrades;
-
 import Game.GameInformation;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

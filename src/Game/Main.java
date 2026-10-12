@@ -9,12 +9,8 @@ public class Main {
         LoadSavedData loadSavedData = new LoadSavedData();
 
         loadSavedData.loadSave();
-        CreateUpgrades.setStartAmount(CreateUpgrades.getBucket()); /*
-        Needs to be moved somewhere else
-        Sets the price based on how many of the upgrade we currently have.*/
 
         UI.makeUI();
-        loadSavedData.loadSave();
 
 
     }

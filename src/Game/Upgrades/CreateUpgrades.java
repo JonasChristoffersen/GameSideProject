@@ -1,8 +1,9 @@
 package Game.Upgrades;
-
 public class CreateUpgrades {
     private static Shovel shovel = new Shovel();
     private static Bucket bucket = new Bucket();
+
+
 
     public static void setAmount(Upgrades upgradeItem, int amount) {
         upgradeItem.setAmount(amount);
@@ -12,11 +13,12 @@ public class CreateUpgrades {
             upgrades.setPrice(upgrades.getCost());
         }
         else {
-            int price = upgrades.getCost();
+            double price = upgrades.getCost();
             for(int i = 0; i < upgrades.getAmount(); i++) {
                 price *= 1.1;
             }
-            upgrades.setPrice(price);
+            System.out.println(price);
+            upgrades.setPrice((int) price);
         }
     }
 

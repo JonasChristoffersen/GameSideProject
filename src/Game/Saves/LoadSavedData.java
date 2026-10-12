@@ -30,5 +30,7 @@ public class LoadSavedData {
             CreateUpgrades.setAmount(CreateUpgrades.getBucket(),0); //If no file is found, set bucket amount to 0
             System.out.println(e.getMessage());
         }
+        CreateUpgrades.setStartAmount(CreateUpgrades.getBucket()); //Has to be a better solution
+        CreateUpgrades.setStartAmount(CreateUpgrades.getShovel());
     }
 }
