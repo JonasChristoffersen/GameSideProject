@@ -43,6 +43,32 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 ---
 
+### ✅ Resolved tasks ✅
+
+- Get a hang of basic Jframe usage
+- Save game
+- Time management
+- Farming panel/CenterPanel
+- Fix GUI not loading when launching program
+- Create and display moneyPanel (Missing real time data/updates)
+- Create and display levelPanel (Missing real time data/updates)
+- Create and display clickPrSecPanel (Missing real time data/updates)
+
+---
+
+### 🐛 Known bugs 🐛
+
+- When using macro, it is possible to go into minus balance! ![img.png](doc/BugImages/MinusBalance.png)
+
+---
+
+### ⭐ Features we want to implement at some point ⭐
+
+- Growable stages that graduly increates yeild from crop
+- Rebirth
+
+---
+
 ### 🔗 Usefull links related to project 🔗
 
 - [Mockup drawings](https://excalidraw.com/#json=1kRZQga_evZcjVHlAqrC2,vE0JO-MgsxpR0mjKnjJ1Cw)
