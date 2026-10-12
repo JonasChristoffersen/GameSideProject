@@ -6,7 +6,7 @@ public class Tomatos extends Crops{
     private int counter = 0;
 
     public Tomatos() {
-        super("Tomatoes", 2, new ImageIcon("minecrafttomatoes.png"), 30);
+        super("Tomatoes", 2, new ImageIcon("src/Game/Assets/minecrafttomatoes.png"), 30);
     }
 
 }

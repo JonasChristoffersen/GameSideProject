@@ -6,7 +6,7 @@ public class Window extends JFrame {
 
     Window(String name) {
         this.setTitle(name);
-        this.setSize(600,600);
+        this.setSize(615,600);
         this.setLayout(null);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

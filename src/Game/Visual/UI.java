@@ -5,10 +5,15 @@ import Game.Crops.Weed;
 import Game.GameInformation;
 import Game.Upgrades.CreateUpgrades;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.jar.JarEntry;
 
 public class UI {
     private static Timer timer = new Timer();
@@ -30,12 +35,12 @@ public class UI {
 
         //Add elements to mainWindow
         mainWindow.add(sideBar);
-        mainWindow.add(centerPanel);
-        mainWindow.add(topBackGroundPanel);
         mainWindow.add(moneyDisplayPanel);
         mainWindow.add(moneyPerSecondPanel);
         mainWindow.add(levelDisplayPanel);
         mainWindow.add(bottomBackGroundPanel);
+        mainWindow.add(centerPanel);
+        mainWindow.add(topBackGroundPanel);
 
         //Fixed GUI not loading correctly
         mainWindow.setWindowVisible();
@@ -114,9 +119,20 @@ public class UI {
 
 
     public static Panels makeTopBackgroundPanel() {
-        Panels topBackGroundPanel = new Panels(0,0,600,61);
-        topBackGroundPanel.setBackground(Color.lightGray);
-        topBackGroundPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        Panels topBackGroundPanel = new Panels(0,0,600,61) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                BufferedImage skyPNG = null;
+                try {
+                    skyPNG = ImageIO.read(new File("src/Game/Assets/SkyTexture.png"));
+                    super.paintComponent(g);
+                    g.drawImage(skyPNG, 0, 0, 400, 100, null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+
 
         //Save game button
         Buttons saveButton = new Buttons(5, 5 ,90, 40);
@@ -130,21 +146,46 @@ public class UI {
     }
 
     public static Panels makeBottomBackGroundPanel() {
-        Panels bottomBackGroundPanel = new Panels(0, 499, 600, 62);
-        bottomBackGroundPanel.setBackground(Color.lightGray);
-        bottomBackGroundPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
+        Panels bottomBackGroundPanel = new Panels(0, 500, 400, 62) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                BufferedImage fencePNG = null;
+                BufferedImage grassPNG = null;
+                try {
+                    fencePNG = ImageIO.read(new File("src/Game/Assets/FenceTexureInvisBackground.png"));
+                    grassPNG = ImageIO.read(new File("src/Game/Assets/GrassCenterPanel.png"));
+                    super.paintComponent(g);
+                    g.drawImage(grassPNG, 0, 0, 1300, 1200, null);
+                    g.drawImage(fencePNG, -60, -75, 200, 200, null);
+                    g.drawImage(fencePNG, 22, -75, 200, 200, null);
+                    g.drawImage(fencePNG, 104, -75, 200, 200, null);
+                    g.drawImage(fencePNG, 186, -75, 200, 200, null);
+                    g.drawImage(fencePNG, 268, -75, 200, 200, null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
         return bottomBackGroundPanel;
     }
 
     public static Panels makeCenterPanel() {
-        Panels centerPanel = new Panels(0, 50, 401, 450); //Set w to 401 so outline will look better up against sidepanel
-        centerPanel.setBackground(new Color(17, 122, 26));
+        Panels centerPanel = new Panels(0, 50, 400, 600) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                BufferedImage grassPNG = null;
+                try {
+                    grassPNG = ImageIO.read(new File("src/Game/Assets/GrassCenterPanel.png"));
+                    super.paintComponent(g);
+                    g.drawImage(grassPNG, -800, -800, 1300, 1300, null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
 
         centerPanel.add(new Buttons(100,100,100,100, new Weed())).setBackground(Color.white);
         centerPanel.add(new Buttons(200,100,100,100, new Tomatos())).setBackground(Color.white);
-
-        centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         return centerPanel;
 
@@ -152,11 +193,23 @@ public class UI {
     }
 
     public static Panels makeSideBar() {
-        Panels sideBar = new Panels(400, 0, 200, 600);
-        sideBar.setBackground(Color.gray);
-        sideBar.add(new Buttons(0, 0, 200, 100, CreateUpgrades.getShovel()));
-        sideBar.setBorder(BorderFactory.createLineBorder(Color.black));
-        sideBar.add(new Buttons(0, 150, 200, 100, CreateUpgrades.getBucket()));
+        Panels sideBar = new Panels(400, 0, 200, 600) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                BufferedImage stoneWallPNG = null;
+                try {
+                    stoneWallPNG = ImageIO.read(new File("src/Game/Assets/StoneWall.png"));
+                    super.paintComponent(g);
+                    g.drawImage(stoneWallPNG, 0, 0, 200, 200, null);
+                    g.drawImage(stoneWallPNG, 0, 200, 200, 200, null);
+                    g.drawImage(stoneWallPNG, 0, 400, 200, 200, null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+        sideBar.add(new Buttons(10, 10, 180, 90, CreateUpgrades.getShovel()));
+        sideBar.add(new Buttons(10, 140, 180, 90, CreateUpgrades.getBucket()));
         sideBar.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
