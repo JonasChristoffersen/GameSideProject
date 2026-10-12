@@ -12,7 +12,11 @@ public class CreateUpgrades {
             upgrades.setPrice(upgrades.getCost());
         }
         else {
-            upgrades.setPrice(upgrades.getCost() * (int) (upgrades.getAmount() * 1.1));
+            int price = upgrades.getCost();
+            for(int i = 0; i < upgrades.getAmount(); i++) {
+                price *= 1.1;
+            }
+            upgrades.setPrice(price);
         }
     }
 
