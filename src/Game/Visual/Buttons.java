@@ -18,10 +18,12 @@ public class Buttons extends JButton{
     private Upgrades upgrade;
     private Timer timer;
     private TimerTask task;
+    private SaveGame saveGame = new SaveGame();
+
 
     //Plot buttons
-    Buttons(int x, int y, int w, int h, Supplier<Crops> cropsSupplier) {
-        this.crop = cropsSupplier.get();
+    Buttons(int x, int y, int w, int h, Crops crop) {
+        this.crop = crop;
         this.setText(crop.getName());
         this.setBounds(x,y,w,h);
         this.setIcon(crop.getImage());
@@ -39,7 +41,7 @@ public class Buttons extends JButton{
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SaveGame.userSaveAction();
+                saveGame.userSaveAction();
             }
         });
     }

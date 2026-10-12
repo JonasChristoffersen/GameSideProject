@@ -1,5 +1,7 @@
 package Game;
 
+import Game.Upgrades.CreateUpgrades;
+
 public class GameInformation {
     private static int points;
     private static int pointsPerSecond;
@@ -41,6 +43,12 @@ public class GameInformation {
 
     public static void addPointsPerSecond(int amount) {
         pointsPerSecond += amount;
+    }
+
+    //Used to load points pr sec
+    public static void loadPointsPerSecond() {
+        GameInformation.pointsPerSecond = (CreateUpgrades.getShovel().getAmount())
+                + (CreateUpgrades.getBucket().getAmount() * 2);
     }
 
     public static void buy(int amount) {

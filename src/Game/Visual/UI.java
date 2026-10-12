@@ -3,10 +3,9 @@ package Game.Visual;
 import Game.Crops.Tomatos;
 import Game.Crops.Weed;
 import Game.GameInformation;
-import Game.Upgrades.Shovel;
+import Game.Upgrades.CreateUpgrades;
 
 import javax.swing.*;
-import javax.swing.plaf.IconUIResource;
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,6 +58,7 @@ public class UI {
         moneyPerSecondAmount = new JLabel();
         moneyPerSecondAmount.setBounds(10, 20, 100, 30);
         moneyPerSecond.add(moneyPerSecondAmount);
+        moneyPerSecondAmount.setText(String.valueOf(GameInformation.getPointsPerSecond()));
         TimerTask updateMoney= new TimerTask() {
             @Override
             public void run() {
@@ -141,8 +141,8 @@ public class UI {
         Panels centerPanel = new Panels(0, 50, 401, 450); //Set w to 401 so outline will look better up against sidepanel
         centerPanel.setBackground(new Color(17, 122, 26));
 
-        centerPanel.add(new Buttons(100,100,100,100, Weed::new)).setBackground(Color.white);
-        centerPanel.add(new Buttons(200,100,100,100, Tomatos::new)).setBackground(Color.white);
+        centerPanel.add(new Buttons(100,100,100,100, new Weed())).setBackground(Color.white);
+        centerPanel.add(new Buttons(200,100,100,100, new Tomatos())).setBackground(Color.white);
 
         centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -154,7 +154,9 @@ public class UI {
     public static Panels makeSideBar() {
         Panels sideBar = new Panels(400, 0, 200, 600);
         sideBar.setBackground(Color.gray);
-        sideBar.add(new Buttons(0, 0, 200, 100, new Shovel()));
+        sideBar.add(new Buttons(0, 0, 200, 100, CreateUpgrades.getShovel()));
+        sideBar.setBorder(BorderFactory.createLineBorder(Color.black));
+        sideBar.add(new Buttons(0, 150, 200, 100, CreateUpgrades.getBucket()));
         sideBar.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
