@@ -19,27 +19,13 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Add real time display to money label (Currently only updated when launching game)
 - Add real time display to level label (Currently only updated when launching game)
 - Add real time display to click pr second (Currently not static feild without a variable!)
-- Display next available upgrade when a certain mps has been reached 
+- Display next available upgrade when a certain mps has been reached
+- Fix saved data to also hold click pr sec
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
 
-- Add upgrades to save function (Jonas)
-- Fix saved data to also hold click pr sec (Jonas)
 -
-
----
-
-### ✅ Resolved tasks ✅
-
-- Get a hang of basic Jframe usage
-- Save game
-- Time management
-- Farming panel/CenterPanel
-- Fix GUI not loading when launching program
-- Create and display moneyPanel (Missing real time data/updates)
-- Create and display levelPanel (Missing real time data/updates)
-- Create and display clickPrSecPanel (Missing real time data/updates)
 
 ---
 
@@ -58,8 +44,7 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 ### 🐛 Known bugs 🐛
 
-- When using macro, it is possible to go into minus balance! ![img.png](doc/BugImages/MinusBalance.png)
-
+- When using macro, it is possible to go into minus balance! ![MinusBalance.png](doc/BugImg/MinusBalance.png)
 ---
 
 ### ⭐ Features we want to implement at some point ⭐
