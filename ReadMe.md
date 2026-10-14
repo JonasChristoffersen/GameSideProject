@@ -21,6 +21,7 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Add real time display to click pr second (Currently not static feild without a variable!)
 - Display next available upgrade when a certain mps has been reached
 - Fix saved data to also hold click pr sec
+- Add user friendly visuals regarding grow stages /info about it
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
