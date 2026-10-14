@@ -1,26 +1,25 @@
-package Game.Visual;
-
-import Game.Crops.Crops;
+package Visual;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.function.Supplier;
 
 import Game.GameInformation;
-import Game.Saves.SaveGame;
-import Game.Upgrades.Upgrades;
+import Saves.SaveManager;
 
 public class Buttons extends JButton{
-    private Crops crop;
-    private Upgrades upgrade;
+    private GameInformation gameInformation;
     private Timer timer;
     private TimerTask task;
-    private SaveGame saveGame = new SaveGame();
+    private SaveManager saveManager = new SaveManager();
 
+    public Buttons(GameInformation gameInformation) {
+        this.gameInformation = gameInformation;
+    }
 
+    /*
     //Plot buttons
     Buttons(int x, int y, int w, int h, Crops crop) {
         this.crop = crop;
@@ -34,20 +33,22 @@ public class Buttons extends JButton{
             }
         });
     }
+     */
 
     //Used for saving the game
-    Buttons(int x, int y, int w, int h) {
+    Buttons(int x, int y, int w, int h, GameInformation gameInformation) {
         this.setBounds(x,y,w,h);
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                saveGame.userSaveAction();
+                saveManager.userSaveAction(gameInformation);
             }
         });
     }
 
+    /*
     //Upgrade buttons
-    Buttons(int x, int y, int w, int h, Upgrades upgrade) {
+    Buttons(int x, int y, int w, int h, Upgrades upgrade, GameInformation gameInformation, UI ui) {
         this.setBounds(x,y,w,h);
         this.setLayout(null);
         this.setEnabled(false);
@@ -66,7 +67,7 @@ public class Buttons extends JButton{
         this.task = new TimerTask() {
             @Override
             public void run() {
-                if (GameInformation.getPoints() >= upgrade.getCost()) {
+                if (gameInformation.getPoints() >= upgrade.getCost()) {
                     getButton().setEnabled(true);
                 } else {
                     getButton().setEnabled(false);
@@ -77,15 +78,17 @@ public class Buttons extends JButton{
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                upgrade.actionPerformed(upgrade);
+                upgrade.actionPerformed(upgrade, gameInformation);
                 upgradeCount.setText(String.valueOf(upgrade.getAmount()));
                 upgradeCost.setText("Cost: " + upgrade.getCost());
-                UI.updateMoneyPerSecond();
+                ui.updateMoneyPerSecond(gameInformation);
             }
         });
 
 
     }
+
+     */
 
 
     public Buttons getButton() {

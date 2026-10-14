@@ -1,10 +1,9 @@
-package Game.Crops;
+package Crops;
 import Game.GameInformation;
 import javax.swing.*;
-import java.awt.*;
 
 
-public abstract class Crops{
+public class Crops{
     private final String name;
     private final int points;
     private int counter;
@@ -13,7 +12,7 @@ public abstract class Crops{
     private int fullGrown;
     private Timer timer;
 
-    Crops(String name, int points, ImageIcon image, int fullGrown) {
+    public Crops(String name, int points, ImageIcon image, int fullGrown) {
         this.name = name;
         this.points = points;
         this.image = image;
@@ -33,21 +32,23 @@ public abstract class Crops{
 
     }
 
+
+
     public void actionPerformed(Crops type){
-       if(timePassed == fullGrown) {
-           GameInformation.addPoints(type.getPoints() + 3);
-           System.out.println(type.getName() +"Stage 3:" + (type.getPoints() + 3));
-       }
-        else if (timePassed > (fullGrown / 2)) { //Halfgrown
-            GameInformation.addPoints(type.getPoints() + 1);
-            System.out.println(type.getName() +"Stage 2: " + (type.getPoints() + 1));
-        }
-        else {
-        GameInformation.addPoints(type.getPoints());
-        System.out.println(type.getName() + " Stage 1;" + type.getPoints());
-    }
+        growthLogic();
         timePassed = 0;
         timer.restart();
+
+    }
+
+    public int growthLogic(){
+        if (this.timePassed == this.fullGrown) {
+            return this.getPoints() * 3 ;
+        }
+        if(this.timePassed > (this.fullGrown / 2)) {
+            return this.getPoints() * 2;
+        }
+        return 0;
 
     }
 

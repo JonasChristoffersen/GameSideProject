@@ -1,58 +1,95 @@
 package Game;
 
-import Game.Upgrades.CreateUpgrades;
+import Crops.Crops;
+import Upgrades.Upgrades;
+
+import javax.swing.*;
+import java.util.ArrayList;
 
 public class GameInformation {
-    private static int points;
-    private static int pointsPerSecond;
-    private static int level;
-    private static String nameOfGame = "Crop Clikker A/S";
-    private static String savedDataPath = "src/Game/Saves/SavedData.csv";
+    private int points;
+    private int pointsPerSecond;
+    private int level;
+    private String nameOfGame = "Crop Clikker A/S";
+    private String savedMoneyData = "src/Saves/savedMoneyData.csv";
+    private String savedUpgradeData = "src/Saves/savedUpgradeData.csv";
 
-    public static int getPoints() {
+    private ArrayList<Upgrades> upgrades;
+    private ArrayList<Crops> crops;
+
+    public GameInformation() {
+        this.upgrades = new ArrayList<>();
+        this.crops = new ArrayList<>();
+        createUpgrades();
+        createCrops();
+
+
+    }
+
+    public int getPoints() {
         return points;
     }
 
-    public static String getNameOfGame() {
+    public String getNameOfGame() {
         return nameOfGame;
     }
 
-    public static void setPoints(int points) {
-        GameInformation.points = points;
+    public void setPoints(int points) {
+        points = points;
     }
 
-    public static void addPoints(int point) {
+    public void addPoints(int point) {
         points += point;
     }
 
-    public static int getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public static void setLevel(int level) {
-        GameInformation.level = level;
+    public void setLevel(int level) {
+        level = level;
     }
 
-    public static String getSavedDataPath() {
-        return savedDataPath;
+    public String getSavedMoneyDataPath() {
+        return savedMoneyData;
     }
 
-    public static int getPointsPerSecond() {
+    public String getSavedUpgradeDataPath() {
+        return savedUpgradeData;
+    }
+
+    public int getPointsPerSecond() {
         return pointsPerSecond;
     }
 
-    public static void addPointsPerSecond(int amount) {
+    public void setPointsPerSecond(int pointsPerSecond) {
+        this.pointsPerSecond = pointsPerSecond;
+    }
+
+    public void addPointsPerSecond(int amount) {
         pointsPerSecond += amount;
     }
 
-    //Used to load points pr sec
-    public static void loadPointsPerSecond() {
-        GameInformation.pointsPerSecond = (CreateUpgrades.getShovel().getAmount())
-                + (CreateUpgrades.getBucket().getAmount() * 2);
+    public void buy(int amount) {
+        points -= amount;
     }
 
-    public static void buy(int amount) {
-        points -= amount;
+    public void createUpgrades(){
+        upgrades.add(new Upgrades("Shovel", 1, 20));
+        upgrades.add(new Upgrades("Bucket", 2, 30));
+    }
+
+    public void createCrops(){
+        crops.add(new Crops("Weed", 1, new ImageIcon("minecraftwheat2.png"), 10));
+        crops.add(new Crops("Tomatoes", 2, new ImageIcon("minecrafttomatoes.png"), 30));
+    }
+
+    public ArrayList<Crops> getCrops() {
+        return crops;
+    }
+
+    public ArrayList<Upgrades> getUpgrades() {
+        return upgrades;
     }
 
 }

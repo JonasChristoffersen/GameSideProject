@@ -1,4 +1,4 @@
-package Game.Upgrades;
+package Upgrades;
 import Game.GameInformation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,21 +9,20 @@ public class Upgrades implements ActionListener {
     private int cost;
     private int amount;
     //TODO: add icon for upgrades.
-    Upgrades(String name, int pointsPerSecond, int upgradeBaseCost) {
+    public Upgrades(String name, int pointsPerSecond, int cost) {
         this.name = name;
         this.pointsPerSecond = pointsPerSecond;
-        this.cost = upgradeBaseCost;
+        this.cost = cost;
     }
 
-    public void actionPerformed(Upgrades type){
-        GameInformation.addPointsPerSecond(type.getPointsPerSecond());
-        GameInformation.buy(type.getCost());
+    public void actionPerformed(Upgrades type, GameInformation gameInformation){
+        gameInformation.addPointsPerSecond(type.getPointsPerSecond());
+        gameInformation.buy(type.getCost());
         System.out.println(type.getPointsPerSecond());
-        System.out.println(GameInformation.getPointsPerSecond());
+        System.out.println(gameInformation.getPointsPerSecond());
 
         amount++;
         increaseCost();
-
 
     }
 

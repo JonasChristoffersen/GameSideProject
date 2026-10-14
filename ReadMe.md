@@ -21,24 +21,12 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Add real time display to click pr second (Currently not static feild without a variable!)
 - Display next available upgrade when a certain mps has been reached
 - Fix saved data to also hold click pr sec
+- Fix saved data to display correct amount and price of upgrades that are purchased in earlier session (Saved data)
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
 
 -
-
----
-
-### ✅ Resolved tasks ✅
-
-- Get a hang of basic Jframe usage
-- Save game
-- Time management
-- Farming panel/CenterPanel
-- Fix GUI not loading when launching program
-- Create and display moneyPanel (Missing real time data/updates)
-- Create and display levelPanel (Missing real time data/updates)
-- Create and display clickPrSecPanel (Missing real time data/updates)
 
 ---
 
