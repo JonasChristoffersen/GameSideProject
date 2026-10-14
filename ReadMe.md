@@ -22,6 +22,7 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Display next available upgrade when a certain mps has been reached
 - Fix saved data to also hold click pr sec
 - Fix saved data to display correct amount and price of upgrades that are purchased in earlier session (Saved data)
+- Add user friendly visuals regarding grow stages /info about it
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
