@@ -65,5 +65,8 @@ public class Crops{
         return image;
     }
 
-
+    public void setTimePassed(int timePassed) {
+        this.timePassed = timePassed;
+        timer.restart();
+    }
 }

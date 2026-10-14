@@ -4,10 +4,11 @@ import Crops.Crops;
 import Upgrades.Upgrades;
 
 import javax.swing.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class GameInformation {
-    private int points;
+    private double points;
     private int pointsPerSecond;
     private int level;
     private String nameOfGame = "Crop Clikker A/S";
@@ -26,7 +27,7 @@ public class GameInformation {
 
     }
 
-    public int getPoints() {
+    public double getPoints() {
         return points;
     }
 
@@ -34,11 +35,11 @@ public class GameInformation {
         return nameOfGame;
     }
 
-    public void setPoints(int points) {
-        points = points;
+    public void setPoints(double points) {
+        this.points = points;
     }
 
-    public void addPoints(int point) {
+    public void addPoints(double point) {
         points += point;
     }
 
@@ -91,5 +92,7 @@ public class GameInformation {
     public ArrayList<Upgrades> getUpgrades() {
         return upgrades;
     }
+
+
 
 }

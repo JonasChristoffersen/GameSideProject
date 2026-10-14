@@ -2,39 +2,41 @@ package Visual;
 
 import Crops.Crops;
 import Game.GameInformation;
+import Saves.SaveManager;
 import Upgrades.Upgrades;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class UI {
-    private Timer timer = new Timer();
     private JLabel moneyPerSecondAmount;
+    private JLabel moneyLabelAmount;
     private GameInformation gameInformation;
+    private SaveManager saveManager;
     private ArrayList<UpgradeButtons> upgradeButtons;
     private ArrayList<CropButtons> cropButtons;
 
-    public UI(GameInformation gameInformation) {
+    public UI(GameInformation gameInformation, SaveManager saveManager) {
         this.gameInformation = gameInformation;
+        this.saveManager = saveManager;
         this.upgradeButtons = new ArrayList<>();
         this.cropButtons = new ArrayList<>();
-        createUpgradeButtons();
-        createCropButtons();
     }
 
     public void makeUI() {
         //TODO: Can we move the creation of panel out to other places???
+        createUpgradeButtons();
+        createCropButtons();
         Window mainWindow = new Window(gameInformation.getNameOfGame());
 
         JScrollPane scrollPane = createScrollPane();
         Panels centerPanel = createCenterPanel();
         Panels topPanel = createTopPanel();
         Panels bottomPanel = createBottomPanel();
-
-
 
         //Add elements to mainWindow
         mainWindow.add(scrollPane, BorderLayout.EAST);
@@ -43,45 +45,43 @@ public class UI {
         mainWindow.add(bottomPanel, BorderLayout.SOUTH);
 
         //Fixed GUI not loading correctly
+        refreshAllTimer();
         mainWindow.setWindowVisible();
     }
 
-
     public Panels makeMoneyPerSecondPanel() {
-        Panels moneyPerSecond = new Panels(150,40);
-        moneyPerSecond.setBackground(new Color(211, 211, 211));
+        Panels moneyPerSecondPanel = new Panels(150,40);
+        moneyPerSecondPanel.setBackground(new Color(211, 211, 211));
+
         JLabel moneyPerSecondLabel= new JLabel();
         moneyPerSecondLabel.setText("Money pr Second");
         moneyPerSecondLabel.setBounds(10, 0, 100, 30);
-        moneyPerSecond.add(moneyPerSecondLabel);
+        moneyPerSecondPanel.add(moneyPerSecondLabel);
+
         moneyPerSecondAmount = new JLabel();
         moneyPerSecondAmount.setBounds(10, 20, 100, 30);
-        moneyPerSecond.add(moneyPerSecondAmount);
+        moneyPerSecondPanel.add(moneyPerSecondAmount);
         moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
-        TimerTask updateMoney= new TimerTask() {
-            @Override
-            public void run() {
-                gameInformation.addPoints(gameInformation.getPointsPerSecond());
-            }
-        };
 
-        moneyPerSecond.setBorder(BorderFactory.createLineBorder(Color.black));
-        timer.schedule(updateMoney, 0, 1000);
+        moneyPerSecondPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        return moneyPerSecond;
+        return moneyPerSecondPanel;
     }
 
     public Panels makeLevelPanel() {
         Panels levelDisplayPanel = new Panels(150, 40);
         levelDisplayPanel.setBackground(new Color(211, 211, 211));
+
         JLabel levelLabelText = new JLabel();
         levelLabelText.setText("Level");
         levelLabelText.setBounds(10, 0, 100, 30);
         levelDisplayPanel.add(levelLabelText);
+
         JLabel levelLabelAmount = new JLabel();
         levelLabelAmount.setText(String.valueOf(gameInformation.getLevel())); //Fix this to display real time amount when level logic is implemented!
         levelLabelAmount.setBounds(10, 20, 100, 30);
         levelDisplayPanel.add(levelLabelAmount);
+
         levelDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         return levelDisplayPanel;
@@ -91,22 +91,17 @@ public class UI {
     public Panels makeMoneyPanel() {
         Panels moneyDisplayPanel = new Panels(150, 40);
         moneyDisplayPanel.setBackground(new Color(211, 211, 211));
+
         JLabel moneyLabelText = new JLabel();
         moneyLabelText.setText("Money");
         moneyLabelText.setBounds(10, 0, 100, 30);
         moneyDisplayPanel.add(moneyLabelText);
-        JLabel moneyLabelAmount = new JLabel();
+
+        moneyLabelAmount = new JLabel();
         moneyLabelAmount.setBounds(10, 20, 100, 30);
         moneyDisplayPanel.add(moneyLabelAmount);
-        moneyDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        TimerTask displayMoney = new TimerTask() {
-            @Override
-            public void run() {
-                moneyLabelAmount.setText(String.valueOf(gameInformation.getPoints()));
-            }
-        };
-        timer.schedule(displayMoney,0,10);
+        moneyDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         return moneyDisplayPanel;
     }
@@ -118,7 +113,7 @@ public class UI {
         topPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         //Save game button
-        Buttons saveButton = new Buttons(5, 5 ,90, 40, gameInformation);
+        Buttons saveButton = new SaveButton(gameInformation, saveManager);
         saveButton.setBackground(Color.gray);
         saveButton.setText("Save Game");
         saveButton.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -147,10 +142,11 @@ public class UI {
         Panels centerPanel = new Panels(200, 200); //Set w to 401 so outline will look better up against sidepanel
         centerPanel.setBackground(new Color(17, 122, 26));
 
-        //centerPanel.add(new Buttons(100,100,100,100, new Weed())).setBackground(Color.white);
-        //centerPanel.add(new Buttons(200,100,100,100, new Tomatos())).setBackground(Color.white);
-
         centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        for (CropButtons button : cropButtons) {
+            centerPanel.add(button);
+        }
 
         return centerPanel;
 
@@ -192,7 +188,24 @@ public class UI {
         return scrollPane;
     }
 
-    public void updateMoneyPerSecond() {
-        moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
+    public void refreshAllTimer() {
+        Timer timer = new Timer();
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                for (UpgradeButtons button : upgradeButtons) {
+                    button.refresh();
+                }
+                moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
+                moneyLabelAmount.setText(df.format( gameInformation.getPoints()));
+                gameInformation.addPoints(gameInformation.getPointsPerSecond() / 10.0);
+            }
+        };
+        timer.schedule(task, 0, 100);
+
+
     }
+
 }

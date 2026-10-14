@@ -9,9 +9,10 @@ import java.awt.event.ActionListener;
 
 public class CropButtons extends Buttons{
     private Crops crop;
+    private GameInformation gameInformation;
 
     public CropButtons(Crops crop, GameInformation gameInformation) {
-        super(gameInformation);
+        this.gameInformation = gameInformation;
         this.crop = crop;
         this.setText(crop.getName());
         this.setPreferredSize(new Dimension(200, 200));
@@ -20,6 +21,7 @@ public class CropButtons extends Buttons{
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameInformation.addPoints(crop.getPoints() + crop.growthLogic());
+                crop.setTimePassed(0);
             }
         });
     }
