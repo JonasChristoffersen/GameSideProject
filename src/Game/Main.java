@@ -1,17 +1,18 @@
 package Game;
 
-import Game.Saves.LoadSavedData;
-import Game.Upgrades.CreateUpgrades;
-import Game.Visual.UI;
+import Saves.SaveManager;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        LoadSavedData loadSavedData = new LoadSavedData();
+        GameInformation gameInformation = new GameInformation();
+        Saves.SaveManager saveManager = new Saves.SaveManager(gameInformation);
+        Visual.UI ui = new Visual.UI(gameInformation, saveManager);
 
-        loadSavedData.loadSave();
-
-        UI.makeUI();
-
-
+        saveManager.loadSave();
+        ui.makeUI();
     }
 }

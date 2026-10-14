@@ -1,4 +1,4 @@
-package Game.Visual;
+package Visual;
 
 import javax.swing.*;
 

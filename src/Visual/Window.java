@@ -1,13 +1,14 @@
-package Game.Visual;
+package Visual;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Window extends JFrame {
 
     Window(String name) {
         this.setTitle(name);
         this.setSize(600,600);
-        this.setLayout(null);
+        this.setLayout(new BorderLayout());
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
