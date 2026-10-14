@@ -78,11 +78,12 @@ public class GameInformation {
     public void createUpgrades(){
         upgrades.add(new Upgrades("Shovel", 1, 20));
         upgrades.add(new Upgrades("Bucket", 2, 30));
+        upgrades.add(new Upgrades("Hoe", 3, 50));
     }
 
     public void createCrops(){
-        crops.add(new Crops("Weed", 1, new ImageIcon("minecraftwheat2.png"), 10));
-        crops.add(new Crops("Tomatoes", 2, new ImageIcon("minecrafttomatoes.png"), 30));
+        crops.add(new Crops("Wheat", 1, new ImageIcon("Assets/minecraftwheat2.png"), 10));
+        crops.add(new Crops("Tomatoes", 2, new ImageIcon("Assets/minecrafttomatoes.png"), 30));
     }
 
     public ArrayList<Crops> getCrops() {
