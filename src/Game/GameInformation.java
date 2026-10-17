@@ -48,7 +48,7 @@ public class GameInformation {
     }
 
     public void setLevel(int level) {
-        level = level;
+        this.level = level;
     }
 
     public String getSavedMoneyDataPath() {

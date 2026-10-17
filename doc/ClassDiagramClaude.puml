@@ -1,0 +1,181 @@
+@startuml ClassDiagram
+set separator none
+/'skinparam classAttributeIconSize 0'/
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+title Crop Clikker A/S - Class Diagram
+
+package "Game" as pkgGame {
+    class Main {
+        + {static} main(args: String[]) : void
+    }
+
+    class GameInformation {
+        - points : double
+        - pointsPerSecond : int
+        - level : int
+        - nameOfGame : String
+        - savedMoneyData : String
+        - savedUpgradeData : String
+        - upgrades : ArrayList<Upgrades>
+        - crops : ArrayList<Crops>
+        + GameInformation()
+        + getPoints() : double
+        + setPoints(points: double) : void
+        + addPoints(point: double) : void
+        + getNameOfGame() : String
+        + getLevel() : int
+        + setLevel(level: int) : void
+        + getSavedMoneyDataPath() : String
+        + getSavedUpgradeDataPath() : String
+        + getPointsPerSecond() : int
+        + setPointsPerSecond(pointsPerSecond: int) : void
+        + addPointsPerSecond(amount: int) : void
+        + buy(amount: int) : void
+        + createUpgrades() : void
+        + createCrops() : void
+        + getCrops() : ArrayList<Crops>
+        + getUpgrades() : ArrayList<Upgrades>
+    }
+}
+
+package "Crops" as pkgCrops {
+    class Crops {
+        - name : String {readOnly}
+        - points : int {readOnly}
+        - counter : int
+        - image : ImageIcon {readOnly}
+        - timePassed : int
+        - fullGrown : int
+        - timer : Timer
+        + Crops(name: String, points: int, image: ImageIcon, fullGrown: int)
+        + actionPerformed(type: Crops) : void
+        + growthLogic() : int
+        + getPoints() : int
+        + getName() : String
+        + getImage() : ImageIcon
+        + setTimePassed(timePassed: int) : void
+    }
+}
+
+package "Upgrades" as pkgUpgrades {
+    class Upgrades implements ActionListener {
+        - name : String
+        - pointsPerSecond : int
+        - cost : int
+        - amount : int
+        + Upgrades(name: String, pointsPerSecond: int, cost: int)
+        + actionPerformed(type: Upgrades, gameInformation: GameInformation) : void
+        + actionPerformed(e: ActionEvent) : void
+        + getCost() : int
+        + getPointsPerSecond() : int
+        + getName() : String
+        + getAmount() : int
+        + setAmount(amount: int) : void
+        + increaseCost() : void
+        + setPrice(amount: int) : void
+    }
+}
+
+package "Saves" as pkgSaves {
+    class SaveManager {
+        - gameInformation : GameInformation
+        + SaveManager(gameInformation: GameInformation)
+        + userSaveAction() : void
+        + loadSave() : void
+    }
+}
+
+package "Visual" as pkgVisual {
+    class UI {
+        - moneyPerSecondAmount : JLabel
+        - moneyLabelAmount : JLabel
+        - gameInformation : GameInformation
+        - saveManager : SaveManager
+        - imgPath : String
+        - upgradeButtons : ArrayList<UpgradeButtons>
+        - cropButtons : ArrayList<CropButtons>
+        + UI(gameInformation: GameInformation, saveManager: SaveManager)
+        + makeUI() : void
+        + makeMoneyPerSecondPanel() : Panels
+        + makeLevelPanel() : Panels
+        + makeMoneyPanel() : Panels
+        + createTopPanel() : Panels
+        + createBottomPanel() : Panels
+        + createCenterPanel() : Panels
+        + createUpgradeButtons() : void
+        + createCropButtons() : void
+        + makeSidePanel() : Panels
+        + createScrollPane() : JScrollPane
+        + refreshAllTimer() : void
+    }
+
+    class Window extends JFrame {
+        ~ Window(name: String)
+        + setWindowVisible() : void
+    }
+
+    class Panels extends JPanel {
+        - imgPath : String
+        ~ Panels(width: int, height: int)
+        + backGroundImg(imgPath: String) : void
+        # paintComponent(g: Graphics) : void
+    }
+
+    class Label extends JLabel
+
+    class Buttons extends JButton
+
+    class CropButtons extends Buttons {
+        - crop : Crops
+        - gameInformation : GameInformation
+        + CropButtons(crop: Crops, gameInformation: GameInformation)
+    }
+
+    class UpgradeButtons extends Buttons {
+        - upgrade : Upgrades
+        - gameInformation : GameInformation
+        + UpgradeButtons(upgrade: Upgrades, gameInformation: GameInformation)
+        + refresh() : void
+    }
+
+    class SaveButton extends Buttons {
+        - gameInformation : GameInformation
+        - saveManager : SaveManager
+        + SaveButton(gameInformation: GameInformation, saveManager: SaveManager)
+    }
+}
+
+' ---- Game ----
+Main ..> GameInformation : creates
+Main ..> SaveManager : creates
+Main ..> UI : creates
+
+GameInformation "1" *-- "0..*" Upgrades : upgrades
+GameInformation "1" *-- "0..*" Crops : crops
+
+' ---- Saves ----
+SaveManager --> GameInformation
+
+' ---- Upgrades ----
+Upgrades ..> GameInformation : uses
+
+' ---- UI ----
+UI --> GameInformation
+UI --> SaveManager
+UI "1" o-- "0..*" UpgradeButtons
+UI "1" o-- "0..*" CropButtons
+UI ..> Window : creates
+UI ..> Panels : creates
+UI ..> SaveButton : creates
+
+' ---- Buttons ----
+CropButtons --> Crops
+CropButtons --> GameInformation
+UpgradeButtons --> Upgrades
+UpgradeButtons --> GameInformation
+SaveButton --> GameInformation
+SaveButton --> SaveManager
+
+@enduml
