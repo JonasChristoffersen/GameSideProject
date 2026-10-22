@@ -8,6 +8,13 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 ### 📝 Below here is a list of all known tasks 📝
 
+- Crop amount sidebar
+  - Displays all different crops that are currently unocked and farmed
+  - Amount + per sec
+- Plots
+  - Owns crops and has specific upgrades from right list of upgrades
+  - Where should upgrade list be stored to handle specific plot
+
 - Map out level logic
   - Display next available upgrade when a certain mps has been reached (Or level)
 - Implement level logic
@@ -34,6 +41,7 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Rebirth
 - Implement achievements
 - Create options window
+- Create foldable upgrade window pr crop type
 
 ---
 
