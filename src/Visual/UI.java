@@ -34,15 +34,15 @@ public class UI {
         createCropButtons();
         Window mainWindow = new Window(gameInformation.getNameOfGame());
 
-        JScrollPane scrollPane = createScrollPane();
-        JScrollPane scrollLeftPane = createLeftScrollPane();
+        JScrollPane scrollUpgradePane = createUpgradeScrollPane();
+        JScrollPane scrollCropAmountPane = createCropAmountScrollPane();
         Panels centerPanel = createCenterPanel();
         Panels topPanel = createTopPanel();
         Panels bottomPanel = createBottomPanel();
 
         //Add elements to mainWindow
-        mainWindow.add(scrollPane, BorderLayout.EAST);
-        mainWindow.add(scrollLeftPane, BorderLayout.WEST);
+        mainWindow.add(scrollUpgradePane, BorderLayout.EAST);
+        mainWindow.add(scrollCropAmountPane, BorderLayout.WEST);
         mainWindow.add(centerPanel, BorderLayout.CENTER);
         mainWindow.add(topPanel, BorderLayout.NORTH);
         mainWindow.add(bottomPanel, BorderLayout.SOUTH);
@@ -180,12 +180,11 @@ public class UI {
         return sidePanel;
     }*/
 
-    public Panels makeSidePanel() {
-        int height = upgradeButtons.size() * 115 + 30;   // 100 button + 15 gap each, + 15 top/bottom
+    public Panels makeUpgradeSidePanel() {
+        int height = upgradeButtons.size() * 115 + 30; // 100 button + 15 gap each, + 15 top/bottom
         Panels sidePanel = new Panels(200, height);
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
         sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
-
         sidePanel.backGroundImg("Assets/StoneWallTexture.png");
 
         for (UpgradeButtons button : upgradeButtons) {
@@ -197,36 +196,25 @@ public class UI {
         return sidePanel;
     }
 
-    public JScrollPane createLeftScrollPane() {
-        JScrollPane scrollPane = new JScrollPane(makeLeftSidePanel());
+    public Panels makeCropAmountSidePanel() {
+        int height = cropButtons.size() * 115 + 30; // 100 button + 15 gap each, + 30/2=15 top/bottom
+        Panels sidePanel = new Panels(200, height);
+        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
+        sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
+        sidePanel.backGroundImg("Assets/StoneWallTexture.png");
+        return sidePanel;
+    }
+
+    public JScrollPane createUpgradeScrollPane() {
+        JScrollPane scrollPane = new JScrollPane(makeUpgradeSidePanel());
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
         return scrollPane;
     }
 
-    public Panels makeLeftSidePanel() {
-        Panels sidePanel = new Panels(200, 10);
-        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
-        sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
-
-
-        sidePanel.backGroundImg("Assets/StoneWallTexture.png");
-        return sidePanel;
-    }
-
-
-    //public Panels make
-
-/*    public JScrollPane createScrollPane() {
-        JScrollPane scrollPane = new JScrollPane(makeSidePanel());
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-        return scrollPane;
-    }*/
-
-    public JScrollPane createScrollPane() {
-        JScrollPane scrollPane = new JScrollPane(makeSidePanel());
+    public JScrollPane createCropAmountScrollPane() {
+        JScrollPane scrollPane = new JScrollPane(makeCropAmountSidePanel());
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
