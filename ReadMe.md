@@ -1,5 +1,6 @@
 # 🌾 Side project "Crop Clicker A/S" 🌾
 
+
 This project is created by 3 computer science students. The project is meant to be a fun challenge, and is souly created in our sparetime.
 
 The game we are developing is scoped to be a clicker/tycoon game. User should be able to use the mouse to click certain items, buy upgrades, earn achievements and maybe more.
