@@ -1,5 +1,7 @@
 package Upgrades;
 import Game.GameInformation;
+import Visual.UpgradeButtons;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -57,4 +59,5 @@ public class Upgrades implements ActionListener {
     public void setPrice(int amount) {
         this.cost = amount;
     }
+
 }
