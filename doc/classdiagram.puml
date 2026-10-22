@@ -48,6 +48,9 @@ class PlotButton{
 class SaveButton{
 }
 
+class OptionButton{
+}
+
 class Plot {
     Not implemented
 }
@@ -93,6 +96,7 @@ Upgrade <|-- ClickUpgrade
 Button <|-- UpgradeButton
 Button <|-- PlotButton
 Button <|-- SaveButton
+Button <|-- OptionButton
 
 UI *-- Window
 UI *-- Panel
