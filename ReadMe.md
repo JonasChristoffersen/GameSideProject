@@ -8,21 +8,13 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 ### 📝 Below here is a list of all known tasks 📝
 
-- Implement achievements
-- Create options window
 - Map out level logic
+  - Display next available upgrade when a certain mps has been reached (Or level)
 - Implement level logic
-- Time management component is created - Implement this when needed (Andreas is the lead on this)
-- Create new methods in UI such as "makeSidePanels"
-- Change color of buttons when they are pressed? (Current blue is not fitting to the theme)
-- Maybe make window of game more rectangular? (This will require quite a lot of rework to current GUI)
-- Add real time display to money label (Currently only updated when launching game)
-- Add real time display to level label (Currently only updated when launching game)
-- Add real time display to click pr second (Currently not static feild without a variable!)
-- Display next available upgrade when a certain mps has been reached
-- Fix saved data to also hold click pr sec
-- Fix saved data to display correct amount and price of upgrades that are purchased in earlier session (Saved data)
-- Add user friendly visuals regarding grow stages /info about it
+- Button behavior (Map out expected button behavior)
+- Add user friendly visuals regarding grow stages / info about it (Either text or png shown regarding stage of crop)
+- Crop layout
+
 ---
 
 ### 🤓 Tasks that we are current working on 🤓
@@ -40,6 +32,8 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 
 - Growable stages that graduly increates yeild from crop
 - Rebirth
+- Implement achievements
+- Create options window
 
 ---
 
