@@ -155,7 +155,8 @@ public class UI {
     public void createUpgradeButtons() {
         for(Plot p : gameInformation.getPlots()) {
             for (Upgrades upgrade : p.getUpgrades()) {
-                upgradeButtons.add(new UpgradeButtons(upgrade, gameInformation));
+                String text = upgrade.getName() + " : " + p.getCrop().getName();
+                upgradeButtons.add(new UpgradeButtons(text, upgrade, gameInformation));
             }
 
         }

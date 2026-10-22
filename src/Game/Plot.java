@@ -27,4 +27,8 @@ public class Plot {
     public ArrayList<Upgrades> getUpgrades() {
         return upgrades;
     }
+
+    public Crops getCrop() {
+        return crop;
+    }
 }
