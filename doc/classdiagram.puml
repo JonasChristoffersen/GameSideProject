@@ -48,7 +48,11 @@ class PlotButton{
 class SaveButton{
 }
 
-abstract class Upgrade{
+class Plot {
+    Not implemented
+}
+
+class Upgrade{
     -String name
     -int baseCost
     -int count
@@ -80,10 +84,11 @@ Main *-- GameState
 Main *-- UI
 Main *--- SaveManager
 
-GameState *-- Upgrade
+GameState *-- Plot
+Plot *-- Upgrade
+Plot *-- Crop
 Upgrade <|-- PerSecondUpgrade
 Upgrade <|-- ClickUpgrade
-GameState *-- Crop
 
 Button <|-- UpgradeButton
 Button <|-- PlotButton
