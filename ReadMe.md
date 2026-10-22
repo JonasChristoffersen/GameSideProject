@@ -43,6 +43,7 @@ The game we are developing is scoped to be a clicker/tycoon game. User should be
 - Create options window
 - Create foldable upgrade window pr crop type
 
+
 ---
 
 ### 🔗 Usefull links related to project 🔗
