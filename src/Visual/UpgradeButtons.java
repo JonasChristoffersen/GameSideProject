@@ -16,13 +16,13 @@ public class UpgradeButtons extends Buttons{
     public UpgradeButtons(Upgrades upgrade, GameInformation gameInformation) {
         this.gameInformation = gameInformation;
         this.upgrade = upgrade;
-        this.setPreferredSize(new Dimension(200, 100));
+        this.setPreferredSize(new Dimension(180, 100));
         this.setLayout(null);
         this.setEnabled(false);
         this.setText(upgrade.getName());
 
         JLabel upgradeCountLabel = new JLabel();
-        upgradeCountLabel.setBounds(180,0,20,20);
+        upgradeCountLabel.setBounds(160,0,20,20);
         upgradeCountLabel.setText(String.valueOf(upgrade.getAmount()));
         this.add(upgradeCountLabel);
 

@@ -72,9 +72,8 @@ public class SaveManager {
             gameInformation.setLevel(0); //If no file is found, set level to 0
             System.out.println(e.getMessage() + " (Money file)");
         }
+
         File upgradeFile = new File(gameInformation.getSavedUpgradeDataPath());
-
-
         try {
             Scanner scan = new Scanner(upgradeFile);
             scan.nextLine();

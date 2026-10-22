@@ -17,6 +17,7 @@ public class UI {
     private JLabel moneyLabelAmount;
     private GameInformation gameInformation;
     private SaveManager saveManager;
+    private String imgPath;
     private ArrayList<UpgradeButtons> upgradeButtons;
     private ArrayList<CropButtons> cropButtons;
 
@@ -147,9 +148,7 @@ public class UI {
         for (CropButtons button : cropButtons) {
             centerPanel.add(button);
         }
-
         return centerPanel;
-
     }
 
     public void createUpgradeButtons() {
@@ -165,19 +164,17 @@ public class UI {
     }
 
     public Panels makeSidePanel() {
-        FlowLayout flowLayout = new FlowLayout(FlowLayout.LEADING, 0, 0);
+        FlowLayout flowLayout = new FlowLayout(FlowLayout.LEADING, 10, 15);
         int height = upgradeButtons.size() * 100;
         Panels sidePanel = new Panels(200, height);
         sidePanel.setLayout(flowLayout);
 
-        sidePanel.setBackground(Color.gray);
-        sidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        sidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        sidePanel.backGroundImg("Assets/StoneWallTexture.png");
+        //sidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         for (UpgradeButtons button : upgradeButtons) {
             sidePanel.add(button);
         }
-
         return sidePanel;
     }
 
@@ -204,8 +201,5 @@ public class UI {
             }
         };
         timer.schedule(task, 0, 100);
-
-
     }
-
 }
