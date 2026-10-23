@@ -1,15 +1,15 @@
 package Game;
 
-import Crops.Crops;
+import Crops.Crop;
 import Upgrades.Upgrades;
 
 import java.util.ArrayList;
 
 public class Plot {
-    private Crops crop;
+    private Crop crop;
     private ArrayList<Upgrades> upgrades;
 
-    public Plot(Crops crop) {
+    public Plot(Crop crop) {
         this.crop = crop;
         this.upgrades = new ArrayList<>();
         createUpgrades();
@@ -26,7 +26,7 @@ public class Plot {
         return upgrades;
     }
 
-    public Crops getCrop() {
+    public Crop getCrop() {
         return crop;
     }
 }

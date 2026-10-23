@@ -1,6 +1,6 @@
 package Visual;
 
-import Crops.Crops;
+import Crops.Crop;
 import Game.GameInformation;
 import Game.Plot;
 import Saves.SaveManager;
@@ -20,19 +20,25 @@ public class UI {
     private SaveManager saveManager;
     private String imgPath;
     private ArrayList<UpgradeButtons> upgradeButtons;
-    private ArrayList<CropButtons> cropButtons;
+    private ArrayList<PlotButton> cropButtons;
+    private ArrayList<JButton> cropAmount;
 
     public UI(GameInformation gameInformation, SaveManager saveManager) {
         this.gameInformation = gameInformation;
         this.saveManager = saveManager;
         this.upgradeButtons = new ArrayList<>();
         this.cropButtons = new ArrayList<>();
+        this.cropAmount = new ArrayList<>();
+        for(Crop p : gameInformation.getCrops()) {
+            cropAmount.add(new JButton());
+        }
+
     }
 
     public void makeUI() {
         //TODO: Can we move the creation of panel out to other places???
         createUpgradeButtons();
-        createCropButtons();
+        createPlotButtons();
         Window mainWindow = new Window(gameInformation.getNameOfGame());
 
         JScrollPane scrollUpgradePane = createUpgradeScrollPane();
@@ -148,7 +154,7 @@ public class UI {
 
         centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        for (CropButtons button : cropButtons) {
+        for (PlotButton button : cropButtons) {
             centerPanel.add(button);
         }
         return centerPanel;
@@ -164,9 +170,9 @@ public class UI {
         }
     }
 
-    public void createCropButtons() {
-        for (Crops crop : gameInformation.getCrops()) {
-            cropButtons.add(new CropButtons(crop, gameInformation));
+    public void createPlotButtons() {
+        for(Plot p : gameInformation.getPlots()) {
+            cropButtons.add(new PlotButton(p, gameInformation));
         }
     }
 
@@ -207,6 +213,9 @@ public class UI {
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
         sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
         sidePanel.backGroundImg("Assets/StoneWallTexture.png");
+        for(JButton b : cropAmount) {
+            sidePanel.add(b);
+        }
         return sidePanel;
     }
 
@@ -223,6 +232,10 @@ public class UI {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
+        JLabel test = new JLabel(String.valueOf(gameInformation.getPlots().get(0).getCrop().getAmount()));
+        test.setBounds(100,100,50,50);
+        test.setVisible(true);
+        scrollPane.add(test);
         return scrollPane;
     }
 
@@ -239,6 +252,12 @@ public class UI {
                 moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
                 moneyLabelAmount.setText(df.format( gameInformation.getPoints()));
                 gameInformation.addPoints(gameInformation.getPointsPerSecond() / 10.0);
+                for(int i = 0; i < cropAmount.size(); i++) {
+                    String text = gameInformation.getCrops().get(i).getName() + " " + String.valueOf(gameInformation.getCrops().get(i).getAmount());
+                    cropAmount.get(i).setText(String.valueOf(text));
+
+                }
+
             }
         };
         timer.schedule(task, 0, 100);

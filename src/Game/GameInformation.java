@@ -1,10 +1,8 @@
 package Game;
 
-import Crops.Crops;
-import Upgrades.Upgrades;
+import Crops.Crop;
 
 import javax.swing.*;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class GameInformation {
@@ -16,7 +14,7 @@ public class GameInformation {
     private String savedUpgradeData = "src/Saves/savedUpgradeData.csv";
 
     private ArrayList<Plot> plots;
-    private ArrayList<Crops> crops;
+    private ArrayList<Crop> crops;
 
 
     public GameInformation() {
@@ -75,19 +73,22 @@ public class GameInformation {
     }
 
     public void createPlots() {
-        for(Crops c : crops) {
+        for(Crop c : crops) {
+            plots.add(new Plot(c));
             plots.add(new Plot(c));
         }
 
     }
 
     private void createCrops(){
-        crops.add(new Crops("Wheat", 1, new ImageIcon("Assets/minecraftwheat2.png"), 10));
-        crops.add(new Crops("Tomatoes", 2, new ImageIcon("Assets/minecrafttomatoes.png"), 30));
-        crops.add(new Crops("weed", 3, null, 30));
+        crops.add(new Crop("Wheat", 1, new ImageIcon("Assets/minecraftwheat2.png"), 2));
+        crops.add(new Crop("Tomatoes", 2, new ImageIcon("Assets/minecrafttomatoes.png"), 10));
+        crops.add(new Crop("weed", 3, null, 2));
+
+
     }
 
-    public ArrayList<Crops> getCrops() {
+    public ArrayList<Crop> getCrops() {
         return crops;
     }
 
