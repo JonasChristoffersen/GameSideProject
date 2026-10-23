@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 
 public class OptionButton extends Buttons{
-    private UI ui;
     public OptionButton() {
         this.setPreferredSize(new Dimension(150, 40));
         this.addActionListener(new ActionListener() {
