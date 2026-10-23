@@ -15,16 +15,15 @@ public class GameInformation {
     private String savedMoneyData = "src/Saves/savedMoneyData.csv";
     private String savedUpgradeData = "src/Saves/savedUpgradeData.csv";
 
-    private ArrayList<Upgrades> upgrades;
+    private ArrayList<Plot> plots;
     private ArrayList<Crops> crops;
 
+
     public GameInformation() {
-        this.upgrades = new ArrayList<>();
+        this.plots = new ArrayList<>();
         this.crops = new ArrayList<>();
-        createUpgrades();
         createCrops();
-
-
+        createPlots();
     }
 
     public double getPoints() {
@@ -75,25 +74,25 @@ public class GameInformation {
         points -= amount;
     }
 
-    public void createUpgrades(){
-        upgrades.add(new Upgrades("Shovel", 1, 20));
-        upgrades.add(new Upgrades("Bucket", 2, 30));
-        upgrades.add(new Upgrades("Hoe", 3, 50));
+    public void createPlots() {
+        for(Crops c : crops) {
+            plots.add(new Plot(c));
+        }
+
     }
 
-    public void createCrops(){
+    private void createCrops(){
         crops.add(new Crops("Wheat", 1, new ImageIcon("Assets/minecraftwheat2.png"), 10));
         crops.add(new Crops("Tomatoes", 2, new ImageIcon("Assets/minecrafttomatoes.png"), 30));
+        crops.add(new Crops("weed", 3, null, 30));
     }
 
     public ArrayList<Crops> getCrops() {
         return crops;
     }
 
-    public ArrayList<Upgrades> getUpgrades() {
-        return upgrades;
+
+    public ArrayList<Plot> getPlots() {
+        return plots;
     }
-
-
-
 }

@@ -1,9 +1,7 @@
 package Upgrades;
 import Game.GameInformation;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Upgrades implements ActionListener {
+public class Upgrades {
     private String name;
     private int pointsPerSecond;
     private int cost;
@@ -13,21 +11,6 @@ public class Upgrades implements ActionListener {
         this.name = name;
         this.pointsPerSecond = pointsPerSecond;
         this.cost = cost;
-    }
-
-    public void actionPerformed(Upgrades type, GameInformation gameInformation){
-        gameInformation.addPointsPerSecond(type.getPointsPerSecond());
-        gameInformation.buy(type.getCost());
-        System.out.println(type.getPointsPerSecond());
-        System.out.println(gameInformation.getPointsPerSecond());
-
-        amount++;
-        increaseCost();
-
-    }
-
-    public void actionPerformed(ActionEvent e) {
-
     }
 
     public int getCost() {
@@ -48,6 +31,10 @@ public class Upgrades implements ActionListener {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public void increaseAmount(int amount) {
+        this.amount += amount;
     }
 
     public void increaseCost(){

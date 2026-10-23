@@ -2,6 +2,7 @@ package Visual;
 
 import Crops.Crops;
 import Game.GameInformation;
+import Game.Plot;
 import Saves.SaveManager;
 import Upgrades.Upgrades;
 
@@ -154,8 +155,12 @@ public class UI {
     }
 
     public void createUpgradeButtons() {
-        for (Upgrades upgrade : gameInformation.getUpgrades()) {
-            upgradeButtons.add(new UpgradeButtons(upgrade, gameInformation));
+        for(Plot p : gameInformation.getPlots()) {
+            for (Upgrades upgrade : p.getUpgrades()) {
+                String text = upgrade.getName() + " : " + p.getCrop().getName();
+                upgradeButtons.add(new UpgradeButtons(text, upgrade, gameInformation));
+            }
+
         }
     }
 

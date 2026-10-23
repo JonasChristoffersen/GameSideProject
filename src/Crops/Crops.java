@@ -11,6 +11,7 @@ public class Crops{
     private int timePassed = 0;
     private int fullGrown;
     private Timer timer;
+    private int amount;
 
     public Crops(String name, int points, ImageIcon image, int fullGrown) {
         this.name = name;

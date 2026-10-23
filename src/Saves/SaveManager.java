@@ -16,6 +16,7 @@ public class SaveManager {
     }
     public void userSaveAction() {
         //Handle "SavedMoneyData.csv" data
+        /*
         try {
             FileWriter writer = new FileWriter(gameInformation.getSavedMoneyDataPath());
             writer.write("Points, MoneyPerSecond, Level");
@@ -92,5 +93,7 @@ public class SaveManager {
             }
             System.out.println(e.getMessage() + " (Upgrade file)");
         }
+    }
+         */
     }
 }
