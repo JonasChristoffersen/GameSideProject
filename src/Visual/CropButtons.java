@@ -11,6 +11,7 @@ public class CropButtons extends Buttons{
     private Crops crop;
     private GameInformation gameInformation;
 
+
     public CropButtons(Crops crop, GameInformation gameInformation) {
         this.gameInformation = gameInformation;
         this.crop = crop;
