@@ -33,6 +33,7 @@ public class PlotButton extends Buttons{
                 timer.stop();
             }
         });
+        timer.setInitialDelay(0);
         timer.start();
         this.addActionListener(new ActionListener() {
             @Override
