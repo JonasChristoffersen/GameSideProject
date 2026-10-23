@@ -16,7 +16,11 @@ public class UpgradeButtons extends Buttons{
     public UpgradeButtons(String text, Upgrades upgrade, GameInformation gameInformation) {
         this.gameInformation = gameInformation;
         this.upgrade = upgrade;
-        this.setPreferredSize(new Dimension(180, 100));
+        //this.setPreferredSize(new Dimension(180, 100));
+        Dimension size = new Dimension(180, 100);
+        this.setPreferredSize(size);
+        this.setMinimumSize(size);
+        this.setMaximumSize(size);
         this.setLayout(null);
         this.setEnabled(false);
         this.setText(text);
