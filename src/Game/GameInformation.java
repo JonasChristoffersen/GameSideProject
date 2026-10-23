@@ -12,6 +12,7 @@ public class GameInformation {
     private String nameOfGame = "Crop Clikker A/S";
     private String savedMoneyData = "src/Saves/savedMoneyData.csv";
     private String savedUpgradeData = "src/Saves/savedUpgradeData.csv";
+    private String savedDataCSV = "src/Saves/savedData.csv";
 
     private ArrayList<Plot> plots;
     private ArrayList<Crop> crops;
@@ -54,6 +55,10 @@ public class GameInformation {
 
     public String getSavedUpgradeDataPath() {
         return savedUpgradeData;
+    }
+
+    public String getSavedDataPath() {
+        return savedDataCSV;
     }
 
     public int getPointsPerSecond() {

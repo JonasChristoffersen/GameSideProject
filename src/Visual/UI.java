@@ -177,21 +177,6 @@ public class UI {
         }
     }
 
-/*    public Panels makeSidePanel() {
-        FlowLayout flowLayout = new FlowLayout(FlowLayout.LEADING, 10, 15);
-        int height = upgradeButtons.size() * 100;
-        Panels sidePanel = new Panels(200, height);
-        sidePanel.setLayout(flowLayout);
-
-        sidePanel.backGroundImg("Assets/StoneWallTexture.png");
-        //sidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        for (UpgradeButtons button : upgradeButtons) {
-            sidePanel.add(button);
-        }
-        return sidePanel;
-    }*/
-
     public Panels makeUpgradeSidePanel() {
         int height = upgradeButtons.size() * 115 + 30; // 100 button + 15 gap each, + 15 top/bottom
         Panels sidePanel = new Panels(200, height);
@@ -233,10 +218,10 @@ public class UI {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
-        JLabel test = new JLabel(String.valueOf(gameInformation.getPlots().get(0).getCrop().getAmount()));
-        test.setBounds(100,100,50,50);
-        test.setVisible(true);
-        scrollPane.add(test);
+        JLabel test = new JLabel(String.valueOf(gameInformation.getPlots().get(0).getCrop().getAmount())); //Is this ever used?
+        test.setBounds(100,100,50,50); //Is this ever used?
+        test.setVisible(true); //Is this ever used?
+        scrollPane.add(test); //Is this ever used?
         return scrollPane;
     }
 

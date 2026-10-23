@@ -43,6 +43,10 @@ public class Crop {
         return amount;
     }
 
+    public void setAmount(int amount){
+        this.amount = amount;
+    }
+
     public int getCropPerSecond() {
         return cropPerSecond;
     }
