@@ -9,7 +9,7 @@ class Main {
     saveManager.loadSave()
     ui.makeUI()
 }
-Main --> SaveManager : uses
+Main ..> SaveManager : uses
 Main *-- UI : has-a
 Main *-- GameInformation : has-a
 
@@ -37,43 +37,46 @@ class UI {
     + void refreshAllTimer()
 }
 UI *-- Window : has-a
+UI ..> GameInformation : uses
+UI *-- Panels : has-a
+UI *-- Buttons : has-a
+UI *-- Label : has-a
 
 class Window {
     + Window(String name)
     + void setWindowVisible()
 }
-Window *-- Panels : has-a
-Window *-- Buttons : has-a
-Window *-- Label : has-a
 
 class Buttons {
 }
 Buttons <|-- SaveButton : is-a
-Buttons <|-- CropButtons : is-a
 Buttons <|-- PlotButton : is-a
 Buttons <|-- UpgradeButtons : is-a
+Buttons <|-- OptionButton
 
 class SaveButton {
     - GameInformation gameInformation
     - SaveManager saveManager
     + SaveButton(GameInformation gameInformation, SaveManager saveManager)
 }
-SaveButton --> SaveManager : uses
-
-class CropButtons {
-    - Crops crop
-    - GameInformation gameInformation
-    + CropButtons(Crops crop, GameInformation gameInformation)
-    + void refresh()
-}
+SaveButton ..> SaveManager : uses
 
 class UpgradeButtons {
     - Upgrades upgrade
     - gameInformation gameInformation
     + UpgradeButtons(Upgrades upgrade, GameInformation gameInformation)
 }
+UpgradeButtons ..> Upgrades : uses
 
 class PlotButton {
+    - Crops crop
+    - GameInformation gameInformation
+    + CropButtons(Crops crop, GameInformation gameInformation)
+    + void refresh()
+}
+PlotButton ..> Plot : uses
+
+class OptionButton {
 }
 
 class Panels {
