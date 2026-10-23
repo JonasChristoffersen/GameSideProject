@@ -34,7 +34,14 @@ public class UpgradeButtons extends Buttons{
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                upgrade.actionPerformed(upgrade, gameInformation);
+                gameInformation.addPointsPerSecond(upgrade.getPointsPerSecond());
+                gameInformation.buy(upgrade.getCost());
+                System.out.println(upgrade.getPointsPerSecond());
+                System.out.println(gameInformation.getPointsPerSecond());
+
+                upgrade.increaseAmount(1);
+                upgrade.increaseCost();
+
                 upgradeCountLabel.setText(String.valueOf(upgrade.getAmount()));
                 upgradeCostLabel.setText("Cost: " + upgrade.getCost());
             }
