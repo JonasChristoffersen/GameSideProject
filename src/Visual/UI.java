@@ -4,7 +4,7 @@ import Crops.Crop;
 import Game.GameInformation;
 import Game.Plot;
 import Saves.SaveManager;
-import Upgrades.Upgrades;
+import Upgrades.Upgrade;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 public class UI {
     private JLabel moneyPerSecondAmount;
@@ -162,7 +163,7 @@ public class UI {
 
     public void createUpgradeButtons() {
         for(Plot p : gameInformation.getPlots()) {
-            for (Upgrades upgrade : p.getUpgrades()) {
+            for (Upgrade upgrade : p.getUpgrades()) {
                 String text = upgrade.getName() + " : " + p.getCrop().getName();
                 upgradeButtons.add(new UpgradeButtons(text, upgrade, gameInformation));
             }
@@ -253,6 +254,7 @@ public class UI {
                 moneyLabelAmount.setText(df.format( gameInformation.getPoints()));
                 gameInformation.addPoints(gameInformation.getPointsPerSecond() / 10.0);
                 for(int i = 0; i < cropAmount.size(); i++) {
+                    gameInformation.getCrops().get(i).giveAmountCPS();
                     String text = gameInformation.getCrops().get(i).getName() + " " + String.valueOf(gameInformation.getCrops().get(i).getAmount());
                     cropAmount.get(i).setText(String.valueOf(text));
 

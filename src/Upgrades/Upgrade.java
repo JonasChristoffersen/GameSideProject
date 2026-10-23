@@ -1,15 +1,16 @@
 package Upgrades;
-import Game.GameInformation;
 
-public class Upgrades {
+import Crops.Crop;
+
+public class Upgrade {
     private String name;
-    private int pointsPerSecond;
-    private int cost;
+    private int cropPerSecond;
+    private Crop cost;
     private int amount;
     //TODO: add icon for upgrades.
-    public Upgrades(String name, int pointsPerSecond, int cost) {
+    public Upgrade(String name, int cropPerSecond, int cost) {
         this.name = name;
-        this.pointsPerSecond = pointsPerSecond;
+        this.cropPerSecond = cropPerSecond;
         this.cost = cost;
     }
 
@@ -17,8 +18,8 @@ public class Upgrades {
         return cost;
     }
 
-    public int getPointsPerSecond() {
-        return pointsPerSecond;
+    public int getCropPerSecond() {
+        return cropPerSecond;
     }
 
     public String getName() {

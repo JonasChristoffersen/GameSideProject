@@ -75,15 +75,14 @@ public class GameInformation {
     public void createPlots() {
         for(Crop c : crops) {
             plots.add(new Plot(c));
-            plots.add(new Plot(c));
         }
-
+        plots.add(new Plot(crops.get(1)));
     }
 
     private void createCrops(){
-        crops.add(new Crop("Wheat", 1, new ImageIcon("Assets/minecraftwheat2.png"), 2));
-        crops.add(new Crop("Tomatoes", 2, new ImageIcon("Assets/minecrafttomatoes.png"), 10));
-        crops.add(new Crop("weed", 3, null, 2));
+        crops.add(new Crop("Wheat", new ImageIcon("Assets/minecraftwheat2.png"), 2));
+        crops.add(new Crop("Tomatoes", new ImageIcon("Assets/minecrafttomatoes.png"), 10));
+        crops.add(new Crop("weed", null, 2));
 
 
     }

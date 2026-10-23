@@ -5,15 +5,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Game.GameInformation;
-import Upgrades.Upgrades;
+import Upgrades.Upgrade;
 
 import javax.swing.*;
 
 public class UpgradeButtons extends Buttons{
-    private Upgrades upgrade;
+    private Upgrade upgrade;
     private GameInformation gameInformation;
 
-    public UpgradeButtons(String text, Upgrades upgrade, GameInformation gameInformation) {
+    public UpgradeButtons(String text, Upgrade upgrade, GameInformation gameInformation) {
         this.gameInformation = gameInformation;
         this.upgrade = upgrade;
         //this.setPreferredSize(new Dimension(180, 100));
@@ -38,9 +38,9 @@ public class UpgradeButtons extends Buttons{
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameInformation.addPointsPerSecond(upgrade.getPointsPerSecond());
+                gameInformation.addPointsPerSecond(upgrade.getCropPerSecond());
                 gameInformation.buy(upgrade.getCost());
-                System.out.println(upgrade.getPointsPerSecond());
+                System.out.println(upgrade.getCropPerSecond());
                 System.out.println(gameInformation.getPointsPerSecond());
 
                 upgrade.increaseAmount(1);

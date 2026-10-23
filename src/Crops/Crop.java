@@ -4,18 +4,16 @@ import javax.swing.*;
 
 public class Crop {
     private final String name;
-    private final int points;
     private int counter;
     private final ImageIcon image;
     private int fullGrown;
     private int amount;
+    private int cropPerSecond;
 
-    public Crop(String name, int points, ImageIcon image, int fullGrown) {
+    public Crop(String name, ImageIcon image, int fullGrown) {
         this.name = name;
-        this.points = points;
         this.image = image;
         this.fullGrown = fullGrown;
-        this.amount = 0;
     }
 
 
@@ -23,9 +21,6 @@ public class Crop {
 
 
 
-    public int getPoints() {
-        return points;
-    }
 
     public String getName() {
         return name;
@@ -48,4 +43,11 @@ public class Crop {
         return amount;
     }
 
+    public int getCropPerSecond() {
+        return cropPerSecond;
+    }
+
+    public void giveAmountCPS() {
+        amount += cropPerSecond;
+    }
 }

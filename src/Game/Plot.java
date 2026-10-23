@@ -1,13 +1,13 @@
 package Game;
 
 import Crops.Crop;
-import Upgrades.Upgrades;
+import Upgrades.Upgrade;
 
 import java.util.ArrayList;
 
 public class Plot {
     private Crop crop;
-    private ArrayList<Upgrades> upgrades;
+    private ArrayList<Upgrade> upgrades;
 
     public Plot(Crop crop) {
         this.crop = crop;
@@ -16,13 +16,13 @@ public class Plot {
     }
 
     public void createUpgrades(){
-        upgrades.add(new Upgrades("Shovel", 1, 20));
-        upgrades.add(new Upgrades("Bucket", 2, 30));
-        upgrades.add(new Upgrades("Hoe", 3, 50));
+        upgrades.add(new Upgrade("Shovel", 1, 20));
+        upgrades.add(new Upgrade("Bucket", 2, 30));
+        upgrades.add(new Upgrade("Hoe", 3, 50));
     }
 
 
-    public ArrayList<Upgrades> getUpgrades() {
+    public ArrayList<Upgrade> getUpgrades() {
         return upgrades;
     }
 
