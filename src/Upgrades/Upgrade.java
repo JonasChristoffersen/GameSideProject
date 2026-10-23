@@ -5,7 +5,7 @@ import Crops.Crop;
 public class Upgrade {
     private String name;
     private int cropPerSecond;
-    private Crop cost;
+    private int cost;
     private int amount;
     //TODO: add icon for upgrades.
     public Upgrade(String name, int cropPerSecond, int cost) {
