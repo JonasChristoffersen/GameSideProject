@@ -14,21 +14,33 @@ public class PlotButton extends Buttons{
     private GameInformation gameInformation;
     private Timer timer;
     private int timePassed = 0;
-
-
+    private JProgressBar progressBar;
 
     public PlotButton(Plot plot, GameInformation gameInformation) {
         this.gameInformation = gameInformation;
         this.plot = plot;
-        this.setText(plot.getCrop().getName());
         this.setPreferredSize(new Dimension(200, 200));
+        this.setVerticalAlignment(SwingConstants.TOP);
+        this.setLayout(new BorderLayout());
+        this.setIconTextGap(15);
+
+        this.setText(plot.getCrop().getName());
+        this.setVerticalTextPosition(SwingConstants.TOP);
+        this.setHorizontalTextPosition(SwingConstants.CENTER);
+
         this.setIcon(plot.getCrop().getImage());
+
+        this.progressBar = new JProgressBar(0, plot.getCrop().getFullGrown());
+        this.add(progressBar, BorderLayout.SOUTH);
+
         timer = new Timer(1000, e -> {
             if ( timePassed < plot.getCrop().getFullGrown()) {
+                progressBar.setValue(timePassed);
                 System.out.println(plot.getCrop().getName() + ": Time passed: " + timePassed);
                 timePassed++;
             }
             else {
+                progressBar.setValue(timePassed);
                 System.out.println(plot.getCrop().getName() + ": is full grown");
                 timer.stop();
             }
@@ -57,8 +69,4 @@ public class PlotButton extends Buttons{
         }
         return 1;
     }
-
-
-
-
 }
