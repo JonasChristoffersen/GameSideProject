@@ -6,7 +6,6 @@ public class Main {
         Saves.SaveManager saveManager = new Saves.SaveManager(gameInformation);
         Visual.UI ui = new Visual.UI(gameInformation, saveManager);
 
-        saveManager.loadSave();
         ui.makeUI();
     }
 }
