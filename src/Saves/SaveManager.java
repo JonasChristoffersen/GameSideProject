@@ -14,37 +14,25 @@ public class SaveManager {
     public SaveManager(GameInformation gameInformation) {
         this.gameInformation = gameInformation;
     }
-    public void userSaveAction() {
-        //Handle "SavedMoneyData.csv" data
-        try {
-            FileWriter writer = new FileWriter(gameInformation.getSavedMoneyDataPath());
-            writer.write("Points, MoneyPerSecond, Level");
-            writer.write("\n" + gameInformation.getPoints()
-                    + ", " + gameInformation.getPointsPerSecond()
-                    + ", " + gameInformation.getLevel()
-            );
-            writer.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
 
-        //Handle "SavedUpgradeData.csv" data
+    public void userSaveAction() {
+        //Handle "savedData.CSV" data
+        //Create header in CSV for each crop amount (Adds "Amount" to crop name in header)
         try {
-            FileWriter writer = new FileWriter(gameInformation.getSavedUpgradeDataPath());
-            for (int i = 0; i < gameInformation.getUpgrades().size(); i++) {
-                if(i < gameInformation.getUpgrades().size() - 1) {
-                    writer.write(gameInformation.getUpgrades().get(i).getName() + ", ");
-                }else {
-                    writer.write(gameInformation.getUpgrades().get(i).getName());
+            FileWriter writer = new FileWriter(gameInformation.getSavedDataPath());
+            for (int i = 0; i < gameInformation.getCrops().size(); i++) {
+                if (i < gameInformation.getCrops().size() - 1) {
+                    writer.write(gameInformation.getCrops().get(i).getName() + "Amount, ");
+                } else {
+                    writer.write(gameInformation.getCrops().get(i).getName() + "Amount");
                 }
             }
-            writer.write("\n");
-
-            for (int i = 0; i < gameInformation.getUpgrades().size(); i++) {
-                if(i < gameInformation.getUpgrades().size() - 1) {
-                    writer.write(gameInformation.getUpgrades().get(i).getAmount() + ", ");
-                }else {
-                    writer.write(String.valueOf(gameInformation.getUpgrades().get(i).getAmount()));
+            writer.write("\n"); //Create new line for actual data in CSV file
+            for (int i = 0; i < gameInformation.getCrops().size(); i++) {
+                if (i < gameInformation.getCrops().size() - 1) {
+                    writer.write(gameInformation.getCrops().get(i).getAmount() + ", ");
+                } else {
+                    writer.write(String.valueOf(gameInformation.getCrops().get(i).getAmount()));
                 }
             }
             writer.close();
@@ -53,44 +41,23 @@ public class SaveManager {
         }
     }
 
-    public void loadSave() {
-        File moneyFile = new File(gameInformation.getSavedMoneyDataPath());
+    public void loadSave () {
+        //Handle "savedData.CSV" data
+        File moneyFile = new File(gameInformation.getSavedDataPath());
         try {
             Scanner scan = new Scanner(moneyFile);
             scan.nextLine(); //Skip header in CSV file!
-            while (scan.hasNextLine()) {
-                String s = scan.nextLine().replaceAll("\\s+", "");
-                String[] values = s.split(",");
-                gameInformation.setPoints(Double.parseDouble(values[0])); //Sets money to saved amount
-                gameInformation.setPointsPerSecond(Integer.parseInt(values[1])); //Sets pointsPerSec
-                gameInformation.setLevel(Integer.parseInt(values[2])); //Sets level to saved amount
-
-
+            String s = scan.nextLine().replaceAll("\\s+", "");
+            String[] values = s.split(",");
+            for (int i = 0; i< values.length; i++) {
+                gameInformation.getCrops().get(i).setAmount((Integer.parseInt(values[i]))); //Sets value of cropAmount pr crop
             }
         } catch (FileNotFoundException e) {
-            gameInformation.setPoints(0); //If no file is found, set points to 0
-            gameInformation.setLevel(0); //If no file is found, set level to 0
-            System.out.println(e.getMessage() + " (Money file)");
-        }
-
-        File upgradeFile = new File(gameInformation.getSavedUpgradeDataPath());
-        try {
-            Scanner scan = new Scanner(upgradeFile);
-            scan.nextLine();
-            String line = scan.nextLine().replaceAll("\\s+", "");
-            String[] upgradeAmount = line.split(",");
-            for (int i = 0; i < gameInformation.getUpgrades().size(); i++) {
-                gameInformation.getUpgrades().get(i).setAmount(Integer.parseInt(upgradeAmount[i]));
-                if (gameInformation.getUpgrades().get(i).getAmount() > 0) {
-                    gameInformation.getUpgrades().get(i).setPrice((int) (gameInformation.getUpgrades().get(i).getCost() * Math.pow(1.1, gameInformation.getUpgrades().get(i).getAmount())));
-                }
-            };
-
-        }catch (FileNotFoundException e) {
-            for (int i = 0; i < gameInformation.getUpgrades().size(); i++) {
-                gameInformation.getUpgrades().get(i).setAmount(0);
+            gameInformation.getCrops().get(0).setAmount(0); //If no file is found, set points to 0
+            for (int i = 0; i< gameInformation.getCrops().size(); i++) {
+                gameInformation.getCrops().get(0).setAmount(0); //Sets value of cropAmount pr crop
             }
-            System.out.println(e.getMessage() + " (Upgrade file)");
+            System.out.println(e.getMessage() + " (No data found - values set to 0!)");
         }
     }
 }

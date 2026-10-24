@@ -1,10 +1,8 @@
 package Game;
 
-import Crops.Crops;
-import Upgrades.Upgrades;
+import Crops.Crop;
 
 import javax.swing.*;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class GameInformation {
@@ -14,17 +12,17 @@ public class GameInformation {
     private String nameOfGame = "Crop Clikker A/S";
     private String savedMoneyData = "src/Saves/savedMoneyData.csv";
     private String savedUpgradeData = "src/Saves/savedUpgradeData.csv";
+    private String savedDataCSV = "src/Saves/savedData.csv";
 
-    private ArrayList<Upgrades> upgrades;
-    private ArrayList<Crops> crops;
+    private ArrayList<Plot> plots;
+    private ArrayList<Crop> crops;
+
 
     public GameInformation() {
-        this.upgrades = new ArrayList<>();
+        this.plots = new ArrayList<>();
         this.crops = new ArrayList<>();
-        createUpgrades();
         createCrops();
-
-
+        createPlots();
     }
 
     public double getPoints() {
@@ -59,6 +57,10 @@ public class GameInformation {
         return savedUpgradeData;
     }
 
+    public String getSavedDataPath() {
+        return savedDataCSV;
+    }
+
     public int getPointsPerSecond() {
         return pointsPerSecond;
     }
@@ -75,25 +77,27 @@ public class GameInformation {
         points -= amount;
     }
 
-    public void createUpgrades(){
-        upgrades.add(new Upgrades("Shovel", 1, 20));
-        upgrades.add(new Upgrades("Bucket", 2, 30));
-        upgrades.add(new Upgrades("Hoe", 3, 50));
+    public void createPlots() {
+        for(Crop c : crops) {
+            plots.add(new Plot(c));
+        }
+        plots.add(new Plot(crops.get(1)));
     }
 
-    public void createCrops(){
-        crops.add(new Crops("Wheat", 1, new ImageIcon("Assets/minecraftwheat2.png"), 10));
-        crops.add(new Crops("Tomatoes", 2, new ImageIcon("Assets/minecrafttomatoes.png"), 30));
+    private void createCrops(){
+        crops.add(new Crop("Wheat", new ImageIcon("Assets/minecraftwheat2.png"), 2));
+        crops.add(new Crop("Tomatoes", new ImageIcon("Assets/minecrafttomatoes.png"), 10));
+        crops.add(new Crop("weed", null, 2));
+
+
     }
 
-    public ArrayList<Crops> getCrops() {
+    public ArrayList<Crop> getCrops() {
         return crops;
     }
 
-    public ArrayList<Upgrades> getUpgrades() {
-        return upgrades;
+
+    public ArrayList<Plot> getPlots() {
+        return plots;
     }
-
-
-
 }

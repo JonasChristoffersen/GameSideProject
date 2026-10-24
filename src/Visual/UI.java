@@ -1,9 +1,10 @@
 package Visual;
 
-import Crops.Crops;
+import Crops.Crop;
 import Game.GameInformation;
+import Game.Plot;
 import Saves.SaveManager;
-import Upgrades.Upgrades;
+import Upgrades.Upgrade;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 public class UI {
     private JLabel moneyPerSecondAmount;
     private JLabel moneyLabelAmount;
@@ -19,28 +21,36 @@ public class UI {
     private SaveManager saveManager;
     private String imgPath;
     private ArrayList<UpgradeButtons> upgradeButtons;
-    private ArrayList<CropButtons> cropButtons;
+    private ArrayList<PlotButton> cropButtons;
+    private ArrayList<JButton> cropAmount;
 
     public UI(GameInformation gameInformation, SaveManager saveManager) {
         this.gameInformation = gameInformation;
         this.saveManager = saveManager;
         this.upgradeButtons = new ArrayList<>();
         this.cropButtons = new ArrayList<>();
+        this.cropAmount = new ArrayList<>();
+        for(Crop p : gameInformation.getCrops()) {
+            cropAmount.add(new JButton());
+        }
+
     }
 
     public void makeUI() {
         //TODO: Can we move the creation of panel out to other places???
         createUpgradeButtons();
-        createCropButtons();
+        createPlotButtons();
         Window mainWindow = new Window(gameInformation.getNameOfGame());
 
-        JScrollPane scrollPane = createScrollPane();
+        JScrollPane scrollUpgradePane = createUpgradeScrollPane();
+        JScrollPane scrollCropAmountPane = createCropAmountScrollPane();
         Panels centerPanel = createCenterPanel();
         Panels topPanel = createTopPanel();
         Panels bottomPanel = createBottomPanel();
 
         //Add elements to mainWindow
-        mainWindow.add(scrollPane, BorderLayout.EAST);
+        mainWindow.add(scrollUpgradePane, BorderLayout.EAST);
+        mainWindow.add(scrollCropAmountPane, BorderLayout.WEST);
         mainWindow.add(centerPanel, BorderLayout.CENTER);
         mainWindow.add(topPanel, BorderLayout.NORTH);
         mainWindow.add(bottomPanel, BorderLayout.SOUTH);
@@ -152,43 +162,73 @@ public class UI {
 
         centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        for (CropButtons button : cropButtons) {
+        for (PlotButton button : cropButtons) {
             centerPanel.add(button);
         }
         return centerPanel;
     }
 
     public void createUpgradeButtons() {
-        for (Upgrades upgrade : gameInformation.getUpgrades()) {
-            upgradeButtons.add(new UpgradeButtons(upgrade, gameInformation));
+        for(Plot p : gameInformation.getPlots()) {
+            for (Upgrade upgrade : p.getUpgrades()) {
+                String text = upgrade.getName() + " : " + p.getCrop().getName();
+                upgradeButtons.add(new UpgradeButtons(text, upgrade, gameInformation));
+            }
+
         }
     }
 
-    public void createCropButtons() {
-        for (Crops crop : gameInformation.getCrops()) {
-            cropButtons.add(new CropButtons(crop, gameInformation));
+    public void createPlotButtons() {
+        for(Plot p : gameInformation.getPlots()) {
+            cropButtons.add(new PlotButton(p, gameInformation));
         }
     }
 
-    public Panels makeSidePanel() {
-        FlowLayout flowLayout = new FlowLayout(FlowLayout.LEADING, 10, 15);
-        int height = upgradeButtons.size() * 100;
+    public Panels makeUpgradeSidePanel() {
+        int height = upgradeButtons.size() * 115 + 30; // 100 button + 15 gap each, + 15 top/bottom
         Panels sidePanel = new Panels(200, height);
-        sidePanel.setLayout(flowLayout);
-
+        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
+        sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
         sidePanel.backGroundImg("Assets/StoneWallTexture.png");
-        //sidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         for (UpgradeButtons button : upgradeButtons) {
+            button.setMaximumSize(new Dimension(180, 100));   // keeps the size fixed
+            button.setAlignmentX(Component.CENTER_ALIGNMENT);
             sidePanel.add(button);
+            sidePanel.add(Box.createVerticalStrut(15));
         }
         return sidePanel;
     }
 
-    public JScrollPane createScrollPane() {
-        JScrollPane scrollPane = new JScrollPane(makeSidePanel());
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    public Panels makeCropAmountSidePanel() {
+        int height = cropButtons.size() * 115 + 30; // 100 button + 15 gap each, + 30/2=15 top/bottom
+        Panels sidePanel = new Panels(200, height);
+        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
+        sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
+        sidePanel.backGroundImg("Assets/StoneWallTexture.png");
+        for(JButton b : cropAmount) {
+            sidePanel.add(b);
+        }
+        return sidePanel;
+    }
 
+    public JScrollPane createUpgradeScrollPane() {
+        JScrollPane scrollPane = new JScrollPane(makeUpgradeSidePanel());
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setBorder(null);
+        return scrollPane;
+    }
+
+    public JScrollPane createCropAmountScrollPane() {
+        JScrollPane scrollPane = new JScrollPane(makeCropAmountSidePanel());
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setBorder(null);
+        JLabel test = new JLabel(String.valueOf(gameInformation.getPlots().get(0).getCrop().getAmount())); //Is this ever used?
+        test.setBounds(100,100,50,50); //Is this ever used?
+        test.setVisible(true); //Is this ever used?
+        scrollPane.add(test); //Is this ever used?
         return scrollPane;
     }
 
@@ -205,6 +245,13 @@ public class UI {
                 moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
                 moneyLabelAmount.setText(df.format(gameInformation.getPoints()));
                 gameInformation.addPoints(gameInformation.getPointsPerSecond() / 10.0);
+                for(int i = 0; i < cropAmount.size(); i++) {
+                    gameInformation.getCrops().get(i).giveAmountCPS();
+                    String text = gameInformation.getCrops().get(i).getName() + " " + String.valueOf(gameInformation.getCrops().get(i).getAmount());
+                    cropAmount.get(i).setText(String.valueOf(text));
+
+                }
+
             }
         };
         timer.schedule(task, 0, 100);
