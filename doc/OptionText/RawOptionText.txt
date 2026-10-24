@@ -1,0 +1,14 @@
+Options & Help
+General information:
+Game	Crop Clicker A/S
+Version	0,0,0,1
+Authors	Andreas, Mathias & Jonas
+
+Help / information about gameplay:
+Your goal is to earn as much money as possible by running your own farm.
+
+Click the crops (Wheat and Tomatoes) to earn money.
+Wait before you click: Crops grow between clicks, so the longer you wait, the more you earn. Past the halfway point you get a bonus, and a fully grown crop gives the biggest bonus. Wheat grows faster than tomatoes.
+Buy upgrades in the panel on the right (Shovel, Bucket and Hoe). They earn you money every second, even when you’re not clicking. The price goes up a little with every upgrade you buy.
+Keep an eye on the bottom bar: It shows your money, your income per second and your level.
+Remember to save: Press “Save Game” to store your progress so you can continue next time.

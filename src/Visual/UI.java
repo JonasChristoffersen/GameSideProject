@@ -61,10 +61,10 @@ public class UI {
     }
 
     public Panels makeMoneyPerSecondPanel() {
-        Panels moneyPerSecondPanel = new Panels(150,40);
+        Panels moneyPerSecondPanel = new Panels(150, 40);
         moneyPerSecondPanel.setBackground(new Color(211, 211, 211));
 
-        JLabel moneyPerSecondLabel= new JLabel();
+        JLabel moneyPerSecondLabel = new JLabel();
         moneyPerSecondLabel.setText("Money pr Second");
         moneyPerSecondLabel.setBounds(10, 0, 100, 30);
         moneyPerSecondPanel.add(moneyPerSecondLabel);
@@ -129,7 +129,14 @@ public class UI {
         saveButton.setText("Save Game");
         saveButton.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        //Option button
+        Buttons optionButton = new OptionButton();
+        optionButton.setBackground(Color.gray);
+        optionButton.setText("Options/help");
+        optionButton.setBorder(BorderFactory.createLineBorder(Color.black));
+
         topPanel.add(saveButton);
+        topPanel.add(optionButton);
 
         return topPanel;
     }
@@ -236,7 +243,7 @@ public class UI {
                     button.refresh();
                 }
                 moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
-                moneyLabelAmount.setText(df.format( gameInformation.getPoints()));
+                moneyLabelAmount.setText(df.format(gameInformation.getPoints()));
                 gameInformation.addPoints(gameInformation.getPointsPerSecond() / 10.0);
                 for(int i = 0; i < cropAmount.size(); i++) {
                     gameInformation.getCrops().get(i).giveAmountCPS();

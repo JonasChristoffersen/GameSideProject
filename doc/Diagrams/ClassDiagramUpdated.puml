@@ -1,0 +1,168 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Main {
+    + {static} void main(String[] args)
+    - GameInformation gameInformation
+    - Saves.SaveManager saveManager
+    - Visual.UI ui
+    saveManager.loadSave()
+    ui.makeUI()
+}
+Main ..> SaveManager : uses
+Main *-- UI : has-a
+Main *-- GameInformation : has-a
+
+
+class UI {
+    - JLabel moneyPerSecondAmount
+    - JLabel moneyLabelAmount
+    - GameInformation gameInformation;
+    - SaveManager saveManager;
+    - String imgPath;
+    - ArrayList<UpgradeButtons> upgradeButtons;
+    - ArrayList<CropButtons> cropButtons;
+    + UI(GameInformation gameInformation, SaveManager saveManager)
+    + void makeUI()
+    + Panels makeMoneyPerSecondPanel()
+    + Panels makeLevelPanel()
+    + Panels makeMoneyPanel()
+    + Panels createTopPanel()
+    + Panels createBottomPanel()
+    + Panels createCenterPanel()
+    + void createUpgradeButtons()
+    + void createCropButtons()
+    + Panels makeSidePanel()
+    + JScrollPane createScrollPane()
+    + void refreshAllTimer()
+}
+UI *-- Window : has-a
+UI ..> GameInformation : uses
+UI *-- Panels : has-a
+UI *-- Buttons : has-a
+UI *-- Label : has-a
+
+class Window {
+    + Window(String name)
+    + void setWindowVisible()
+}
+
+class Buttons {
+}
+Buttons <|-- SaveButton : is-a
+Buttons <|-- PlotButton : is-a
+Buttons <|-- UpgradeButtons : is-a
+Buttons <|-- OptionButton
+
+class SaveButton {
+    - GameInformation gameInformation
+    - SaveManager saveManager
+    + SaveButton(GameInformation gameInformation, SaveManager saveManager)
+}
+SaveButton ..> SaveManager : uses
+
+class UpgradeButtons {
+    - Upgrades upgrade
+    - gameInformation gameInformation
+    + UpgradeButtons(Upgrades upgrade, GameInformation gameInformation)
+}
+UpgradeButtons ..> Upgrades : uses
+
+class PlotButton {
+    - Crops crop
+    - GameInformation gameInformation
+    + CropButtons(Crops crop, GameInformation gameInformation)
+    + void refresh()
+}
+PlotButton ..> Plot : uses
+
+class OptionButton {
+    + OptionButton()
+}
+
+class Panels {
+    - String imgPath
+    + Panels(int width, int height)
+    + void backGroundImg(String imgPath)
+}
+
+class Label {
+}
+
+
+class SaveManager {
+    - GameInformation gameInformation
+    + SaveManager(GameInformation gameInformation)
+    + void userSaveAction()
+    + void loadSave()
+}
+
+class GameInformation {
+    - double points
+    - int pointsPerSecond
+    - int level
+    - String nameOfGame
+    - String savedMoneyData
+    - String savedUpgradeData
+    - ArrayList<Upgrades> upgrades;
+    - ArrayList<Crops> crops;
+    + GameInformation()
+    + double getPoints()
+    + String getNameOfGame()
+    + void setPoints(double points)
+    + void addPoints(double point)
+    + int getLevel()
+    + void setLevel(int level)
+    + String getSavedMoneyDataPath()
+    + String getSavedUpgradeDataPath()
+    + int getPointsPerSecond()
+    + void setPointsPerSecond(int pointsPerSecond)
+    + void addPointsPerSecond(int amount)
+    + void buy(int amount)
+    + void createUpgrades()
+    + void createCrops()
+    + ArrayList<Crops> getCrops()
+    + ArrayList<Upgrades> getUpgrades()
+}
+GameInformation *-- Plot : has-a
+
+class Plot {
+}
+Plot *-- Crops : has-a
+Plot *-- Upgrades : has-a
+
+class Crops {
+    - String name
+    - int points
+    - int counter
+    - ImageIcon image
+    - int timePassed
+    - int fullGrown
+    - Timer timer
+    + Crops(String name, int points, ImageIcon image, int fullGrown)
+    + void actionPerformed(Crops type)
+    + int growthLogic()
+    + int getPoints()
+    + String getName()
+    + ImageIcon getImage()
+    + void setTimePassed(int timePassed)
+}
+
+class Upgrades {
+    - String name
+    - int pointsPerSecond
+    - int cost
+    - int amount
+    + Upgrades(String name, int pointsPerSecond, int cost)
+    + void actionPerformed(Upgrades type, GameInformation gameInformation)
+    + void actionPerformed(ActionEvent e)
+    + int getCost()
+    + int getPointsPerSecond()
+    + String getName()
+    + int getAmount()
+    + void setAmount(int amount)
+    + void increaseCost()
+    + void setPrice(int amount)
+}
+
+@enduml
