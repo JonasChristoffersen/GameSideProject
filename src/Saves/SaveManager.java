@@ -53,11 +53,14 @@ public class SaveManager {
                 gameInformation.getCrops().get(i).setAmount((Integer.parseInt(values[i]))); //Sets value of cropAmount pr crop
             }
         } catch (FileNotFoundException e) {
-            gameInformation.getCrops().get(0).setAmount(0); //If no file is found, set points to 0
-            for (int i = 0; i< gameInformation.getCrops().size(); i++) {
-                gameInformation.getCrops().get(0).setAmount(0); //Sets value of cropAmount pr crop
-            }
+            newGame();
             System.out.println(e.getMessage() + " (No data found - values set to 0!)");
+        }
+    }
+
+    public void newGame() {
+        for (int i = 0; i< gameInformation.getCrops().size(); i++) {
+            gameInformation.getCrops().get(0).setAmount(0); //Sets value of cropAmount pr crop
         }
     }
 }

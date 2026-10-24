@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static javax.swing.JOptionPane.PLAIN_MESSAGE;
+
 
 public class UI {
     private JLabel moneyPerSecondAmount;
@@ -38,6 +40,7 @@ public class UI {
 
     public void makeUI() {
         //TODO: Can we move the creation of panel out to other places???
+        userStartGameChoice(); //Option pane that asks if they want to load data from earlier session or new game!
         createUpgradeButtons();
         createPlotButtons();
         Window mainWindow = new Window(gameInformation.getNameOfGame());
@@ -55,7 +58,6 @@ public class UI {
         mainWindow.add(topPanel, BorderLayout.NORTH);
         mainWindow.add(bottomPanel, BorderLayout.SOUTH);
 
-        //Fixed GUI not loading correctly
         refreshAllTimer();
         mainWindow.setWindowVisible();
     }
@@ -255,5 +257,28 @@ public class UI {
             }
         };
         timer.schedule(task, 0, 100);
+    }
+    //Yes=0 NO=1 close=-1
+    public void userStartGameChoice() {
+        String[] responses = {"Yes!\n Start new game", "No!\n Load data from earlier session"}; //, "thank you!", "*blush*"
+        String message = """
+                Welcome to CropClicker A/S!
+                Do you wish to start a new game, or load existing data?
+                """;
+        int userChoice = JOptionPane.showOptionDialog(
+                null,
+                message,
+                "Load data or start new game?",
+                JOptionPane.YES_NO_OPTION,
+                PLAIN_MESSAGE,
+                null,
+                responses,
+                responses[0]
+        );
+        switch (userChoice) {
+            case 0 -> saveManager.newGame();
+            case 1 -> saveManager.loadSave();
+            default -> System.exit(0);
+        }
     }
 }
