@@ -1,6 +1,7 @@
 package Game;
 
 import Crops.Crop;
+import Upgrades.Cost;
 import Upgrades.Upgrade;
 
 import java.util.ArrayList;
@@ -19,6 +20,11 @@ public class Plot {
         upgrades.add(new Upgrade("Shovel", 1, 20));
         upgrades.add(new Upgrade("Bucket", 2, 30));
         upgrades.add(new Upgrade("Hoe", 3, 50));
+
+        Upgrade upgrade = new Upgrade("test", 10,10);
+
+
+
     }
 
 

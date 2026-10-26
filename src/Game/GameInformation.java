@@ -17,10 +17,10 @@ public class GameInformation {
     private ArrayList<Plot> plots;
     private ArrayList<Crop> crops;
 
-
     public GameInformation() {
         this.plots = new ArrayList<>();
         this.crops = new ArrayList<>();
+
         createCrops();
         createPlots();
     }

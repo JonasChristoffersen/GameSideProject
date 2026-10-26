@@ -2,17 +2,22 @@ package Upgrades;
 
 import Crops.Crop;
 
+import java.util.ArrayList;
+
 public class Upgrade {
     private String name;
     private int cropPerSecond;
     private int cost;
     private int amount;
+    private ArrayList<Cost> costs;
     //TODO: add icon for upgrades.
     public Upgrade(String name, int cropPerSecond, int cost) {
         this.name = name;
         this.cropPerSecond = cropPerSecond;
         this.cost = cost;
+        this.costs = new ArrayList<>();
     }
+
 
     public int getCost() {
         return cost;
@@ -44,5 +49,9 @@ public class Upgrade {
 
     public void setPrice(int amount) {
         this.cost = amount;
+    }
+
+    public void addCost(ArrayList<Cost> test) {
+
     }
 }
