@@ -19,9 +19,8 @@ public class GameInformation {
 
     public GameInformation() {
         this.plots = new ArrayList<>();
-        this.crops = new ArrayList<>();
+        this.crops = CropName.makeCrops();
 
-        createCrops();
         createPlots();
     }
 
@@ -84,13 +83,13 @@ public class GameInformation {
         plots.add(new Plot(crops.get(1)));
     }
 
+   /*
     private void createCrops(){
         crops.add(new Crop("Wheat", new ImageIcon("Assets/minecraftwheat2.png"), 2));
         crops.add(new Crop("Tomatoes", new ImageIcon("Assets/minecrafttomatoes.png"), 10));
         crops.add(new Crop("weed", null, 2));
-
-
     }
+    */
 
     public ArrayList<Crop> getCrops() {
         return crops;
