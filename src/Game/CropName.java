@@ -1,7 +1,6 @@
 package Game;
 
 import Crops.Crop;
-import Upgrades.Cost;
 
 import java.util.ArrayList;
 
@@ -29,13 +28,10 @@ public enum CropName {
         return amount;
     }
 
-    public static ArrayList<Cost> makeCost() {
-        ArrayList<Cost> costs = new ArrayList<>();
-        for(CropName c : CropName.values()) {
-            costs.add(new Cost(c.getName(), c.getAmount()));
-        }
-        return costs;
+    public int getIndex() {
+        return index;
     }
+
 
     public void setAmount(int amount) {
         this.amount = amount;

@@ -13,14 +13,19 @@ public class PlotButton extends Buttons{
     private Plot plot;
     private GameInformation gameInformation;
     private Timer timer;
+    private boolean isUnlocked;
     private int timePassed = 0;
 
 
 
-    public PlotButton(Plot plot, GameInformation gameInformation) {
+    public PlotButton(Plot plot, GameInformation gameInformation, boolean isUnlockeda) {
         this.gameInformation = gameInformation;
         this.plot = plot;
-        this.setText(plot.getCrop().getName());
+        setText(this.plot.getCrop().getName());
+        if(!isUnlockeda) {
+            setText("\n COSTS: \n" + gameInformation.getCrops().get(plot.getId() - 1).getName() + " " + plot.getCost());
+
+        }
         this.setPreferredSize(new Dimension(200, 200));
         this.setIcon(plot.getCrop().getImage());
         timer = new Timer(1000, e -> {
@@ -33,14 +38,29 @@ public class PlotButton extends Buttons{
                 timer.stop();
             }
         });
-        timer.setInitialDelay(0);
-        timer.start();
+        if(isUnlocked) {
+            timer.setInitialDelay(0);
+            timer.start();
+        }
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                plot.getCrop().addAmount(growthLogic(plot.getCrop()));
+                if(isUnlocked) {
+                    plot.getCrop().addAmount(growthLogic(plot.getCrop()));
+                    setTimePassed(0);
+                }
+                else {
+                    SetTrue();
+                    if(plot.getId() > 0) {
+                        gameInformation.getPlots().get(plot.getId() - 1).getCrop().buy(plot.getCost());
+                    }
+                    setText();
+                }
                 setTimePassed(0);
+
+
             }
+
         });
     }
 
@@ -58,6 +78,24 @@ public class PlotButton extends Buttons{
         return 1;
     }
 
+    public void refresh() {
+        if(!isUnlocked && plot.getId() > 0){
+            boolean t = gameInformation.getCrops().get(plot.getId() - 1).getAmount()  >= plot.getCost();
+            if (t) {
+                this.setEnabled(true);
+            } else {
+                this.setEnabled(false);
+            }
+        }
+    }
+
+    public void setText() {
+        this.setText(plot.getCrop().getName());
+    }
+
+    public void SetTrue() {
+        this.isUnlocked = true;
+    }
 
 
 

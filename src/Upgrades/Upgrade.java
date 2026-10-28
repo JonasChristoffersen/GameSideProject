@@ -10,13 +10,11 @@ public class Upgrade {
     private int cropPerSecond;
     private int cost;
     private int amount;
-    private ArrayList<Cost> costs;
     //TODO: add icon for upgrades.
     public Upgrade(String name, int cropPerSecond) {
         this.name = name;
         this.cropPerSecond = cropPerSecond;
         this.cost = cost;
-        this.costs = CropName.makeCost();
     }
 
 
@@ -45,6 +43,10 @@ public class Upgrade {
     }
 
     public void increaseCost(){
+
+        //Algorithme for hvordan cost scaler.
+
+
         cost *= 1.1;
     }
 
@@ -52,13 +54,4 @@ public class Upgrade {
         this.cost = amount;
     }
 
-    public void addCost(Cost costs) {
-        this.costs.add(costs);
-
-    }
-
-
-    public ArrayList<Cost> getCosts() {
-        return costs;
-    }
 }

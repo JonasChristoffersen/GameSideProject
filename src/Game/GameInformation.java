@@ -2,7 +2,6 @@ package Game;
 
 import Crops.Crop;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class GameInformation {
@@ -18,7 +17,7 @@ public class GameInformation {
     private ArrayList<Crop> crops;
 
     public GameInformation() {
-        this.plots = new ArrayList<>();
+        this.plots = new ArrayList<Plot>();
         this.crops = CropName.makeCrops();
 
         createPlots();
@@ -80,7 +79,7 @@ public class GameInformation {
         for(Crop c : crops) {
             plots.add(new Plot(c));
         }
-        plots.add(new Plot(crops.get(1)));
+
     }
 
    /*

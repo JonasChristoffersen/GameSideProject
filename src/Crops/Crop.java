@@ -21,6 +21,10 @@ public class Crop {
 
 
 
+    public void buy(int amount) {
+        this.amount -= amount;
+    }
+
 
     public String getName() {
         return name;

@@ -1,6 +1,7 @@
 package Visual;
 
 import Crops.Crop;
+import Game.CropName;
 import Game.GameInformation;
 import Game.Plot;
 import Saves.SaveManager;
@@ -167,6 +168,8 @@ public class UI {
         for (PlotButton button : cropButtons) {
             centerPanel.add(button);
         }
+
+
         return centerPanel;
     }
 
@@ -181,9 +184,11 @@ public class UI {
     }
 
     public void createPlotButtons() {
-        for(Plot p : gameInformation.getPlots()) {
-            cropButtons.add(new PlotButton(p, gameInformation));
+        cropButtons.add(new PlotButton(gameInformation.getPlots().get(0),gameInformation,true));
+        for(int i = 1; i < gameInformation.getPlots().size(); i++) {
+            cropButtons.add(new PlotButton(gameInformation.getPlots().get(i),gameInformation, false));
         }
+
     }
 
     public Panels makeUpgradeSidePanel() {
@@ -244,6 +249,9 @@ public class UI {
                 for (UpgradeButtons button : upgradeButtons) {
                     button.refresh();
                 }
+                for (PlotButton p : cropButtons) {
+                    p.refresh();
+                }
                 moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
                 moneyLabelAmount.setText(df.format(gameInformation.getPoints()));
                 gameInformation.addPoints(gameInformation.getPointsPerSecond() / 10.0);
@@ -258,6 +266,10 @@ public class UI {
         };
         timer.schedule(task, 0, 100);
     }
+
+
+
+
     //Yes=0 NO=1 close=-1
     public void userStartGameChoice() {
         String[] responses = {"Yes!\n Start new game", "No!\n Load data from earlier session"}; //, "thank you!", "*blush*"
