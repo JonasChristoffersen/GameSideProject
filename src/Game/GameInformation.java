@@ -12,6 +12,7 @@ public class GameInformation {
     private String savedMoneyData = "src/Saves/savedMoneyData.csv";
     private String savedUpgradeData = "src/Saves/savedUpgradeData.csv";
     private String savedDataCSV = "src/Saves/savedData.csv";
+    private int unlockedPlotCount;
 
     private ArrayList<Plot> plots;
     private ArrayList<Crop> crops;
@@ -19,6 +20,7 @@ public class GameInformation {
     public GameInformation() {
         this.plots = new ArrayList<Plot>();
         this.crops = CropName.makeCrops();
+        this.unlockedPlotCount = 1;
 
         createPlots();
     }
@@ -97,5 +99,13 @@ public class GameInformation {
 
     public ArrayList<Plot> getPlots() {
         return plots;
+    }
+
+    public int getUnlockedPlotCount() {
+        return unlockedPlotCount;
+    }
+
+    public void increaseUnlockedPlotCount(int amount) {
+        unlockedPlotCount += amount;
     }
 }

@@ -184,9 +184,10 @@ public class UI {
     }
 
     public void createPlotButtons() {
-        cropButtons.add(new PlotButton(gameInformation.getPlots().get(0),gameInformation,true));
-        for(int i = 1; i < gameInformation.getPlots().size(); i++) {
-            cropButtons.add(new PlotButton(gameInformation.getPlots().get(i),gameInformation, false));
+        for(int i = 0; i < gameInformation.getPlots().size(); i++) {
+            boolean isUnlocked = i < gameInformation.getUnlockedPlotCount();
+            boolean isVisible = i <= gameInformation.getUnlockedPlotCount();
+            cropButtons.add(new PlotButton(gameInformation.getPlots().get(i),gameInformation, isUnlocked, isVisible));
         }
 
     }
@@ -249,9 +250,15 @@ public class UI {
                 for (UpgradeButtons button : upgradeButtons) {
                     button.refresh();
                 }
-                for (PlotButton p : cropButtons) {
-                    p.refresh();
+
+                if (gameInformation.getUnlockedPlotCount() < cropButtons.size()) {
+                    cropButtons.get(gameInformation.getUnlockedPlotCount()).refresh();
+
+                    if (cropButtons.get(gameInformation.getUnlockedPlotCount() - 1).isUnlocked()) {
+                        cropButtons.get(gameInformation.getUnlockedPlotCount()).setVisible(true);
+                    }
                 }
+
                 moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
                 moneyLabelAmount.setText(df.format(gameInformation.getPoints()));
                 gameInformation.addPoints(gameInformation.getPointsPerSecond() / 10.0);

@@ -18,9 +18,10 @@ public class PlotButton extends Buttons{
 
 
 
-    public PlotButton(Plot plot, GameInformation gameInformation, boolean isUnlockeda) {
+    public PlotButton(Plot plot, GameInformation gameInformation, boolean isUnlockeda, boolean isVisible) {
         this.gameInformation = gameInformation;
         this.plot = plot;
+        this.setVisible(isVisible);
         setText(this.plot.getCrop().getName());
         if(!isUnlockeda) {
             setText("\n COSTS: \n" + gameInformation.getCrops().get(plot.getId() - 1).getName() + " " + plot.getCost());
@@ -53,6 +54,7 @@ public class PlotButton extends Buttons{
                     SetTrue();
                     if(plot.getId() > 0) {
                         gameInformation.getPlots().get(plot.getId() - 1).getCrop().buy(plot.getCost());
+                        gameInformation.increaseUnlockedPlotCount(1);
                     }
                     setText();
                 }
@@ -79,13 +81,11 @@ public class PlotButton extends Buttons{
     }
 
     public void refresh() {
-        if(!isUnlocked && plot.getId() > 0){
-            boolean t = gameInformation.getCrops().get(plot.getId() - 1).getAmount()  >= plot.getCost();
-            if (t) {
-                this.setEnabled(true);
-            } else {
-                this.setEnabled(false);
-            }
+        boolean t = gameInformation.getCrops().get(plot.getId() - 1).getAmount()  >= plot.getCost();
+        if (t) {
+            this.setEnabled(true);
+        } else {
+            this.setEnabled(false);
         }
     }
 
@@ -97,6 +97,8 @@ public class PlotButton extends Buttons{
         this.isUnlocked = true;
     }
 
-
+    public boolean isUnlocked() {
+        return isUnlocked;
+    }
 
 }

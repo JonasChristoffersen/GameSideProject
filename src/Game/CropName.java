@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public enum CropName {
     WHEAT("Wheat", 2, 0),
     TOMATOS("Tomatos", 10,1),
-    WEED("WEED", 2,2);
+    WEED("WEED", 2,2),
+    CUCUMBER("Cucumber", 2,3);
 
     private final String name;
     private final int fullGrown;
