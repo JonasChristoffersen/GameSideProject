@@ -1,7 +1,6 @@
 package Visual;
 
 import Crops.Crop;
-import Game.CropName;
 import Game.GameInformation;
 import Game.Plot;
 import Saves.SaveManager;
@@ -22,21 +21,20 @@ public class UI {
     private JLabel moneyLabelAmount;
     private GameInformation gameInformation;
     private SaveManager saveManager;
-    private String imgPath;
     private ArrayList<UpgradeButtons> upgradeButtons;
-    private ArrayList<PlotButton> cropButtons;
+    private centerPanels centerPanels;
+    //private ArrayList<PlotButton> cropButtons;
     private ArrayList<JButton> cropAmount;
 
     public UI(GameInformation gameInformation, SaveManager saveManager) {
         this.gameInformation = gameInformation;
         this.saveManager = saveManager;
         this.upgradeButtons = new ArrayList<>();
-        this.cropButtons = new ArrayList<>();
+        this.centerPanels = new centerPanels();
         this.cropAmount = new ArrayList<>();
         for(Crop p : gameInformation.getCrops()) {
             cropAmount.add(new JButton());
         }
-
     }
 
     public void makeUI() {
@@ -44,11 +42,12 @@ public class UI {
         userStartGameChoice(); //Option pane that asks if they want to load data from earlier session or new game!
         createUpgradeButtons();
         createPlotButtons();
+        centerPanels.buildScreens();
         Window mainWindow = new Window(gameInformation.getNameOfGame());
 
         JScrollPane scrollUpgradePane = createUpgradeScrollPane();
         JScrollPane scrollCropAmountPane = createCropAmountScrollPane();
-        Panels centerPanel = createCenterPanel();
+        centerPanels centerPanel = centerPanels;
         Panels topPanel = createTopPanel();
         Panels bottomPanel = createBottomPanel();
 
@@ -61,6 +60,7 @@ public class UI {
 
         refreshAllTimer();
         mainWindow.setWindowVisible();
+
     }
 
     public Panels makeMoneyPerSecondPanel() {
@@ -120,7 +120,7 @@ public class UI {
         return moneyDisplayPanel;
     }
 
-
+    //TODO: Refactor this to own class
     public Panels createTopPanel() {
         Panels topPanel = new Panels(600, 50);
         topPanel.setBackground(Color.lightGray);
@@ -144,13 +144,17 @@ public class UI {
         return topPanel;
     }
 
+    //TODO: REMEMBER TO DISPLAY CROP PER SECOND ANOTHER PLACE!
+    //bottomPanel.add(makeMoneyPerSecondPanel(), Box.CENTER_ALIGNMENT);
     public Panels createBottomPanel() {
         Panels bottomPanel = new Panels(600, 50);
         BoxLayout boxLayout = new BoxLayout(bottomPanel, BoxLayout.X_AXIS);
         bottomPanel.setLayout(boxLayout);
 
+        Buttons sellButton = new SellButton(centerPanels);
+
         bottomPanel.add(makeMoneyPanel(), Box.LEFT_ALIGNMENT);
-        bottomPanel.add(makeMoneyPerSecondPanel(), Box.CENTER_ALIGNMENT);
+        bottomPanel.add(sellButton, Box.CENTER_ALIGNMENT);
         bottomPanel.add(makeLevelPanel(), Box.RIGHT_ALIGNMENT);
 
         bottomPanel.setBackground(Color.lightGray);
@@ -159,27 +163,12 @@ public class UI {
         return bottomPanel;
     }
 
-    public Panels createCenterPanel() {
-        Panels centerPanel = new Panels(200, 200); //Set w to 401 so outline will look better up against sidepanel
-        centerPanel.setBackground(new Color(17, 122, 26));
-
-        centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        for (PlotButton button : cropButtons) {
-            centerPanel.add(button);
-        }
-
-
-        return centerPanel;
-    }
-
     public void createUpgradeButtons() {
         for(Plot p : gameInformation.getPlots()) {
             for (Upgrade upgrade : p.getUpgrades()) {
                 String text = upgrade.getName() + " : " + p.getCrop().getName();
                 upgradeButtons.add(new UpgradeButtons(text, upgrade, gameInformation));
             }
-
         }
     }
 
@@ -187,9 +176,8 @@ public class UI {
         for(int i = 0; i < gameInformation.getPlots().size(); i++) {
             boolean isUnlocked = i < gameInformation.getUnlockedPlotCount();
             boolean isVisible = i <= gameInformation.getUnlockedPlotCount();
-            cropButtons.add(new PlotButton(gameInformation.getPlots().get(i),gameInformation, isUnlocked, isVisible));
+            centerPanels.getCropButtons().add(new PlotButton(gameInformation.getPlots().get(i),gameInformation, isUnlocked, isVisible));
         }
-
     }
 
     public Panels makeUpgradeSidePanel() {
@@ -209,7 +197,7 @@ public class UI {
     }
 
     public Panels makeCropAmountSidePanel() {
-        int height = cropButtons.size() * 115 + 30; // 100 button + 15 gap each, + 30/2=15 top/bottom
+        int height = centerPanels.getCropButtons().size() * 115 + 30; // 100 button + 15 gap each, + 30/2=15 top/bottom
         Panels sidePanel = new Panels(200, height);
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
         sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
@@ -243,23 +231,22 @@ public class UI {
     public void refreshAllTimer() {
         Timer timer = new Timer();
         DecimalFormat df = new DecimalFormat("#.##");
-
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 for (UpgradeButtons button : upgradeButtons) {
                     button.refresh();
                 }
+                if (gameInformation.getUnlockedPlotCount() < centerPanels.getCropButtons().size()) {
+                    centerPanels.getCropButtons().get(gameInformation.getUnlockedPlotCount()).refresh();
 
-                if (gameInformation.getUnlockedPlotCount() < cropButtons.size()) {
-                    cropButtons.get(gameInformation.getUnlockedPlotCount()).refresh();
-
-                    if (cropButtons.get(gameInformation.getUnlockedPlotCount() - 1).isUnlocked()) {
-                        cropButtons.get(gameInformation.getUnlockedPlotCount()).setVisible(true);
+                    if (centerPanels.getCropButtons().get(gameInformation.getUnlockedPlotCount() - 1).isUnlocked()) {
+                        centerPanels.getCropButtons().get(gameInformation.getUnlockedPlotCount()).setVisible(true);
                     }
                 }
 
-                moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
+                //Out commented due to value not being used to display MPS (money pr sec) anymore! (Sell button now owns UI place)
+                //moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
                 moneyLabelAmount.setText(df.format(gameInformation.getPoints()));
                 gameInformation.addPoints(gameInformation.getPointsPerSecond() / 10.0);
                 for(int i = 0; i < cropAmount.size(); i++) {
@@ -268,14 +255,10 @@ public class UI {
                     cropAmount.get(i).setText(String.valueOf(text));
 
                 }
-
             }
         };
         timer.schedule(task, 0, 100);
     }
-
-
-
 
     //Yes=0 NO=1 close=-1
     public void userStartGameChoice() {
