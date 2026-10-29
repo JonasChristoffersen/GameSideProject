@@ -1,4 +1,4 @@
-package Visual;
+package Visual.Clickables;
 
 import Crops.Crop;
 import Game.GameInformation;
@@ -23,6 +23,9 @@ public class PlotButton extends Buttons{
         this.plot = plot;
         this.setVisible(isVisible);
         setText(this.plot.getCrop().getName());
+        this.backGroundImg("Assets/FarmLandPlotTexture.png");
+        this.setForeground(Color.WHITE);
+        this.setBorder(BorderFactory.createEmptyBorder());
         if(!isUnlockeda) {
             setText("\n COSTS: \n" + gameInformation.getCrops().get(plot.getId() - 1).getName() + " " + plot.getCost());
 

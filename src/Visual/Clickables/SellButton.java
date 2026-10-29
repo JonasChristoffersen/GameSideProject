@@ -1,4 +1,6 @@
-package Visual;
+package Visual.Clickables;
+
+import Visual.centerPanels;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

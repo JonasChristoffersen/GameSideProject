@@ -5,6 +5,7 @@ import Game.GameInformation;
 import Game.Plot;
 import Saves.SaveManager;
 import Upgrades.Upgrade;
+import Visual.Clickables.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +34,11 @@ public class UI {
         this.centerPanels = new centerPanels();
         this.cropAmount = new ArrayList<>();
         for(Crop p : gameInformation.getCrops()) {
-            cropAmount.add(new JButton());
+            Buttons button = new Buttons();
+            button.backGroundImg("Assets/SmallStoneButton.png");
+            button.setBorder(BorderFactory.createEmptyBorder());
+            button.setForeground(Color.WHITE);
+            cropAmount.add(button);
         }
     }
 
@@ -63,7 +68,7 @@ public class UI {
 
     }
 
-    public Panels makeMoneyPerSecondPanel() {
+/*    public Panels makeMoneyPerSecondPanel() {
         Panels moneyPerSecondPanel = new Panels(150, 40);
         moneyPerSecondPanel.setBackground(new Color(211, 211, 211));
 
@@ -80,20 +85,22 @@ public class UI {
         moneyPerSecondPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         return moneyPerSecondPanel;
-    }
+    }*/
 
     public Panels makeLevelPanel() {
         Panels levelDisplayPanel = new Panels(150, 40);
-        levelDisplayPanel.setBackground(new Color(211, 211, 211));
+        levelDisplayPanel.backGroundImg("Assets/WoodButtonTexture.png");
 
         JLabel levelLabelText = new JLabel();
         levelLabelText.setText("Level");
         levelLabelText.setBounds(10, 0, 100, 30);
+        levelLabelText.setForeground(Color.WHITE);
         levelDisplayPanel.add(levelLabelText);
 
         JLabel levelLabelAmount = new JLabel();
         levelLabelAmount.setText(String.valueOf(gameInformation.getLevel())); //Fix this to display real time amount when level logic is implemented!
         levelLabelAmount.setBounds(10, 20, 100, 30);
+        levelLabelAmount.setForeground(Color.WHITE);
         levelDisplayPanel.add(levelLabelAmount);
 
         levelDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -104,18 +111,19 @@ public class UI {
 
     public Panels makeMoneyPanel() {
         Panels moneyDisplayPanel = new Panels(150, 40);
-        moneyDisplayPanel.setBackground(new Color(211, 211, 211));
+        //moneyDisplayPanel.setBackground(new Color(211, 211, 211));
+        moneyDisplayPanel.backGroundImg("Assets/WoodButtonTexture.png");
 
         JLabel moneyLabelText = new JLabel();
         moneyLabelText.setText("Money");
         moneyLabelText.setBounds(10, 0, 100, 30);
+        moneyLabelText.setForeground(Color.WHITE);
         moneyDisplayPanel.add(moneyLabelText);
 
         moneyLabelAmount = new JLabel();
         moneyLabelAmount.setBounds(10, 20, 100, 30);
+        moneyLabelAmount.setForeground(Color.WHITE);
         moneyDisplayPanel.add(moneyLabelAmount);
-
-        moneyDisplayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         return moneyDisplayPanel;
     }
@@ -123,20 +131,21 @@ public class UI {
     //TODO: Refactor this to own class
     public Panels createTopPanel() {
         Panels topPanel = new Panels(600, 50);
-        topPanel.setBackground(Color.lightGray);
-        topPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        topPanel.backGroundImg("Assets/WoodPanel.png");
 
         //Save game button
         Buttons saveButton = new SaveButton(gameInformation, saveManager);
-        saveButton.setBackground(Color.gray);
+        saveButton.backGroundImg("Assets/WoodButtonTexture.png");
+        saveButton.setForeground(Color.WHITE);
         saveButton.setText("Save Game");
-        saveButton.setBorder(BorderFactory.createLineBorder(Color.black));
+        saveButton.setBorder(BorderFactory.createEmptyBorder());
 
         //Option button
         Buttons optionButton = new OptionButton();
-        optionButton.setBackground(Color.gray);
+        optionButton.backGroundImg("Assets/WoodButtonTexture.png");
+        optionButton.setForeground(Color.WHITE);
         optionButton.setText("Options/help");
-        optionButton.setBorder(BorderFactory.createLineBorder(Color.black));
+        optionButton.setBorder(BorderFactory.createEmptyBorder());
 
         topPanel.add(saveButton);
         topPanel.add(optionButton);
@@ -147,18 +156,18 @@ public class UI {
     //TODO: REMEMBER TO DISPLAY CROP PER SECOND ANOTHER PLACE!
     //bottomPanel.add(makeMoneyPerSecondPanel(), Box.CENTER_ALIGNMENT);
     public Panels createBottomPanel() {
-        Panels bottomPanel = new Panels(600, 50);
-        BoxLayout boxLayout = new BoxLayout(bottomPanel, BoxLayout.X_AXIS);
-        bottomPanel.setLayout(boxLayout);
+        Panels bottomPanel = new Panels(300, 50);
 
         Buttons sellButton = new SellButton(centerPanels);
+        sellButton.backGroundImg("Assets/WoodButtonTexture.png");
+        sellButton.setForeground(Color.WHITE);
+        sellButton.setBorder(BorderFactory.createLineBorder(Color.black));
 
         bottomPanel.add(makeMoneyPanel(), Box.LEFT_ALIGNMENT);
         bottomPanel.add(sellButton, Box.CENTER_ALIGNMENT);
         bottomPanel.add(makeLevelPanel(), Box.RIGHT_ALIGNMENT);
 
-        bottomPanel.setBackground(Color.lightGray);
-        bottomPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        bottomPanel.backGroundImg("Assets/WoodPanel.png");
 
         return bottomPanel;
     }
@@ -180,52 +189,16 @@ public class UI {
         }
     }
 
-    public Panels makeUpgradeSidePanel() {
-        int height = upgradeButtons.size() * 115 + 30; // 100 button + 15 gap each, + 15 top/bottom
-        Panels sidePanel = new Panels(200, height);
-        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
-        sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
-        sidePanel.backGroundImg("Assets/StoneWallTexture.png");
-
-        for (UpgradeButtons button : upgradeButtons) {
-            button.setMaximumSize(new Dimension(180, 100));   // keeps the size fixed
-            button.setAlignmentX(Component.CENTER_ALIGNMENT);
-            sidePanel.add(button);
-            sidePanel.add(Box.createVerticalStrut(15));
-        }
-        return sidePanel;
-    }
-
-    public Panels makeCropAmountSidePanel() {
-        int height = centerPanels.getCropButtons().size() * 115 + 30; // 100 button + 15 gap each, + 30/2=15 top/bottom
-        Panels sidePanel = new Panels(200, height);
-        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
-        sidePanel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10)); //Creates room between buttons and edges
-        sidePanel.backGroundImg("Assets/StoneWallTexture.png");
-        for(JButton b : cropAmount) {
-            sidePanel.add(b);
-        }
-        return sidePanel;
-    }
-
     public JScrollPane createUpgradeScrollPane() {
-        JScrollPane scrollPane = new JScrollPane(makeUpgradeSidePanel());
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setBorder(null);
-        return scrollPane;
+        SidePanel panel = new SidePanel();
+        panel.addItems(upgradeButtons, 100);
+        return panel.toScrollPane();
     }
 
     public JScrollPane createCropAmountScrollPane() {
-        JScrollPane scrollPane = new JScrollPane(makeCropAmountSidePanel());
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setBorder(null);
-        JLabel test = new JLabel(String.valueOf(gameInformation.getPlots().get(0).getCrop().getAmount())); //Is this ever used?
-        test.setBounds(100,100,50,50); //Is this ever used?
-        test.setVisible(true); //Is this ever used?
-        scrollPane.add(test); //Is this ever used?
-        return scrollPane;
+        SidePanel panel = new SidePanel();
+        panel.addItems(cropAmount, 40);
+        return panel.toScrollPane();
     }
 
     public void refreshAllTimer() {

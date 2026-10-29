@@ -1,4 +1,4 @@
-package Visual;
+package Visual.Clickables;
 
 import Game.GameInformation;
 import Saves.SaveManager;

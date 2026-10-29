@@ -1,4 +1,4 @@
-package Visual;
+package Visual.Clickables;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,15 +24,20 @@ public class UpgradeButtons extends Buttons{
         this.setLayout(null);
         this.setEnabled(false);
         this.setText(text);
+        this.backGroundImg("Assets/LargeStoneButton.png");
+        this.setForeground(Color.WHITE);
+        this.setBorder(BorderFactory.createEmptyBorder());
 
         JLabel upgradeCountLabel = new JLabel();
-        upgradeCountLabel.setBounds(160,0,20,20);
+        upgradeCountLabel.setBounds(140,5,20,20);
         upgradeCountLabel.setText(String.valueOf(upgrade.getAmount()));
+        upgradeCountLabel.setForeground(Color.WHITE);
         this.add(upgradeCountLabel);
 
         JLabel upgradeCostLabel = new JLabel();
-        upgradeCostLabel.setBounds(80, 70, 100, 20);
+        upgradeCostLabel.setBounds(65, 70, 100, 20);
         upgradeCostLabel.setText("Cost: " + upgrade.getCost());
+        upgradeCostLabel.setForeground(Color.WHITE);
         this.add(upgradeCostLabel);
 
         this.addActionListener(new ActionListener() {
