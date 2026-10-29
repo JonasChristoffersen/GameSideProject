@@ -81,6 +81,9 @@ public class PlotButton extends Buttons{
     }
 
     public void refresh() {
+        if (!isVisible()) {
+            setVisible(true);
+        }
         boolean t = gameInformation.getCrops().get(plot.getId() - 1).getAmount()  >= plot.getCost();
         if (t) {
             this.setEnabled(true);

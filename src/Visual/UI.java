@@ -253,10 +253,6 @@ public class UI {
 
                 if (gameInformation.getUnlockedPlotCount() < cropButtons.size()) {
                     cropButtons.get(gameInformation.getUnlockedPlotCount()).refresh();
-
-                    if (cropButtons.get(gameInformation.getUnlockedPlotCount() - 1).isUnlocked()) {
-                        cropButtons.get(gameInformation.getUnlockedPlotCount()).setVisible(true);
-                    }
                 }
 
                 moneyPerSecondAmount.setText(String.valueOf(gameInformation.getPointsPerSecond()));
