@@ -7,5 +7,6 @@ public class Main {
         Visual.UI ui = new Visual.UI(gameInformation, saveManager);
 
         ui.makeUI();
+
     }
 }
