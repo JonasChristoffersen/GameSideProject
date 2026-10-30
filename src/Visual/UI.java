@@ -31,7 +31,7 @@ public class UI {
         this.gameInformation = gameInformation;
         this.saveManager = saveManager;
         this.upgradeButtons = new ArrayList<>();
-        this.centerPanels = new centerPanels();
+        this.centerPanels = new centerPanels(gameInformation);
         this.cropAmount = new ArrayList<>();
         for(Crop p : gameInformation.getCrops()) {
             Buttons button = new Buttons();
