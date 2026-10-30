@@ -1,6 +1,9 @@
 package Upgrades;
 
 import Crops.Crop;
+import Game.CropName;
+
+import java.util.ArrayList;
 
 public class Upgrade {
     private String name;
@@ -8,11 +11,12 @@ public class Upgrade {
     private int cost;
     private int amount;
     //TODO: add icon for upgrades.
-    public Upgrade(String name, int cropPerSecond, int cost) {
+    public Upgrade(String name, int cropPerSecond) {
         this.name = name;
         this.cropPerSecond = cropPerSecond;
         this.cost = cost;
     }
+
 
     public int getCost() {
         return cost;
@@ -39,10 +43,15 @@ public class Upgrade {
     }
 
     public void increaseCost(){
+
+        //Algorithme for hvordan cost scaler.
+
+
         cost *= 1.1;
     }
 
     public void setPrice(int amount) {
         this.cost = amount;
     }
+
 }

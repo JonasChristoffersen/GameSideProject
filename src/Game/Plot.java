@@ -8,19 +8,18 @@ import java.util.ArrayList;
 public class Plot {
     private Crop crop;
     private ArrayList<Upgrade> upgrades;
+    private int cost;
+    private int id;
+    private static int count = 0;
 
     public Plot(Crop crop) {
         this.crop = crop;
         this.upgrades = new ArrayList<>();
-        createUpgrades();
+        this.upgrades = UpgradeType.makeUpgrades();
+        this.id = count;
+        count++;
+        this.cost = id * 10;
     }
-
-    public void createUpgrades(){
-        upgrades.add(new Upgrade("Shovel", 1, 20));
-        upgrades.add(new Upgrade("Bucket", 2, 30));
-        upgrades.add(new Upgrade("Hoe", 3, 50));
-    }
-
 
     public ArrayList<Upgrade> getUpgrades() {
         return upgrades;
@@ -28,5 +27,13 @@ public class Plot {
 
     public Crop getCrop() {
         return crop;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getCost() {
+        return cost;
     }
 }

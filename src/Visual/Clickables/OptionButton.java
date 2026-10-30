@@ -1,4 +1,4 @@
-package Visual;
+package Visual.Clickables;
 
 import javax.swing.*;
 import java.awt.*;

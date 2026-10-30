@@ -2,7 +2,6 @@ package Game;
 
 import Crops.Crop;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class GameInformation {
@@ -13,15 +12,16 @@ public class GameInformation {
     private String savedMoneyData = "src/Saves/savedMoneyData.csv";
     private String savedUpgradeData = "src/Saves/savedUpgradeData.csv";
     private String savedDataCSV = "src/Saves/savedData.csv";
+    private int unlockedPlotCount;
 
     private ArrayList<Plot> plots;
     private ArrayList<Crop> crops;
 
-
     public GameInformation() {
-        this.plots = new ArrayList<>();
-        this.crops = new ArrayList<>();
-        createCrops();
+        this.plots = new ArrayList<Plot>();
+        this.crops = CropName.makeCrops();
+        this.unlockedPlotCount = 1;
+
         createPlots();
     }
 
@@ -81,16 +81,16 @@ public class GameInformation {
         for(Crop c : crops) {
             plots.add(new Plot(c));
         }
-        plots.add(new Plot(crops.get(1)));
+
     }
 
+   /*
     private void createCrops(){
         crops.add(new Crop("Wheat", new ImageIcon("Assets/minecraftwheat2.png"), 2));
         crops.add(new Crop("Tomatoes", new ImageIcon("Assets/minecrafttomatoes.png"), 10));
         crops.add(new Crop("weed", null, 2));
-
-
     }
+    */
 
     public ArrayList<Crop> getCrops() {
         return crops;
@@ -99,5 +99,13 @@ public class GameInformation {
 
     public ArrayList<Plot> getPlots() {
         return plots;
+    }
+
+    public int getUnlockedPlotCount() {
+        return unlockedPlotCount;
+    }
+
+    public void increaseUnlockedPlotCount(int amount) {
+        unlockedPlotCount += amount;
     }
 }
