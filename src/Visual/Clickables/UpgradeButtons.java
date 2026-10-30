@@ -55,8 +55,6 @@ public class UpgradeButtons extends Buttons{
                 upgradeCostLabel.setText("Cost: " + upgrade.getCost());
             }
         });
-
-
     }
 
     public void refresh() {

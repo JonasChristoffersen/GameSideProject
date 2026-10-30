@@ -18,7 +18,6 @@ public class SidePanel extends Panels implements Scrollable {
         super(); // No prefixed size set
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(gap, 10, gap, 10));
-        setBackground(Color.DARK_GRAY); // vises hvis billedet mangler
         tiledBackGroundImg(texturePath, tileScale);
     }
 
