@@ -74,40 +74,44 @@ public class centerPanels extends JPanel {
             Panels cropPanel = new Panels(600, 35);
             cropPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
             cropPanel.setBackground(Color.GREEN);
+            cropPanel.setLayout(new BoxLayout(cropPanel, BoxLayout.X_AXIS));
+            cropPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
             //Name of crop to sell
             Buttons button = new Buttons();
             button.setPreferredSize(cropNameBoxSize);
             button.setText(gameInformation.getCrops().get(i).getName());
+            makeStretchable(button, cropNameBoxSize);
             cropPanel.add(button);
 
-            //Sell button 1x
-            SellCropButton sellCropButton1x = new SellCropButton();
-            sellCropButton1x.setPreferredSize(cropSellBoxSize);
-            sellCropButton1x.setText("Sell 1x");
-            cropPanel.add(sellCropButton1x);
-
-            //Sell button 10x
-            SellCropButton sellCropButton10x = new SellCropButton();
-            sellCropButton10x.setPreferredSize(cropSellBoxSize);
-            sellCropButton10x.setText("Sell 10x");
-            cropPanel.add(sellCropButton10x);
-
-            //sell button 100x
-            SellCropButton sellCropButton100x = new SellCropButton();
-            sellCropButton100x.setPreferredSize(cropSellBoxSize);
-            sellCropButton100x.setText("Sell 100x");
-            cropPanel.add(sellCropButton100x);
+            //sell buttons
+            int[] sellAmountNumber = {1, 10, 100};
+            for (int s = 0; s < sellAmountNumber.length; s++) {
+                SellCropButton sellCropButton = new SellCropButton();
+                sellCropButton.setPreferredSize(cropSellBoxSize);
+                sellCropButton.setText("Sell " + sellAmountNumber[s] + "x");
+                makeStretchable(sellCropButton, cropSellBoxSize);
+                cropPanel.add(Box.createHorizontalStrut(5));
+                cropPanel.add(sellCropButton);
+            }
 
             //Info about crop pricing
             Buttons infoButton = new Buttons();
             infoButton.setPreferredSize(new Dimension(225, 25));
             infoButton.setText("1x " + gameInformation.getCrops().get(i).getName() + " sells for: 1$");
+            makeStretchable(infoButton, new Dimension(225, 25));
+            cropPanel.add(Box.createHorizontalStrut(5));
             cropPanel.add(infoButton);
 
             sellPanel.add(Box.createVerticalStrut(10));
             sellPanel.add(cropPanel);
         }
         return sellPanel;
+    }
+
+    private void makeStretchable(JComponent component, Dimension preferred) {
+        component.setPreferredSize(preferred);
+        component.setMinimumSize(new Dimension(20, preferred.height));
+        component.setMaximumSize(new Dimension(Integer.MAX_VALUE, preferred.height));
     }
 }
