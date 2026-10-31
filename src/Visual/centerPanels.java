@@ -66,6 +66,7 @@ public class centerPanels extends JPanel {
 
         Label sellHeaderLabel = new Label();
         sellHeaderLabel.setText("Welcome to the shop! Here you can sell your crops for $");
+        sellHeaderLabel.setForeground(Color.BLACK);
         sellHeaderPanel.add(sellHeaderLabel);
 
         sellPanel.add(sellHeaderPanel);
