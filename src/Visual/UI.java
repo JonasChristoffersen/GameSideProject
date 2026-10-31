@@ -111,7 +111,6 @@ public class UI {
 
     public Panels makeMoneyPanel() {
         Panels moneyDisplayPanel = new Panels(150, 40);
-        //moneyDisplayPanel.setBackground(new Color(211, 211, 211));
         moneyDisplayPanel.backGroundImg("Assets/WoodButtonTexture.png");
 
         JLabel moneyLabelText = new JLabel();

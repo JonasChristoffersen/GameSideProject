@@ -4,6 +4,7 @@ import Game.GameInformation;
 import Visual.Clickables.Buttons;
 import Visual.Clickables.PlotButton;
 import Visual.Clickables.SellCropButton;
+import org.ietf.jgss.GSSManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,7 +88,7 @@ public class centerPanels extends JPanel {
             //sell buttons
             int[] sellAmountNumber = {1, 10, 100};
             for (int s = 0; s < sellAmountNumber.length; s++) {
-                SellCropButton sellCropButton = new SellCropButton();
+                SellCropButton sellCropButton = new SellCropButton(gameInformation.getCrops().get(i), gameInformation, sellAmountNumber[s]);
                 sellCropButton.setPreferredSize(cropSellBoxSize);
                 sellCropButton.setText("Sell " + sellAmountNumber[s] + "x");
                 makeStretchable(sellCropButton, cropSellBoxSize);

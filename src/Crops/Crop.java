@@ -16,15 +16,9 @@ public class Crop {
         this.fullGrown = fullGrown;
     }
 
-
-
-
-
-
     public void buy(int amount) {
         this.amount -= amount;
     }
-
 
     public String getName() {
         return name;
@@ -33,7 +27,6 @@ public class Crop {
     public ImageIcon getImage() {
         return image;
     }
-
 
     public int getFullGrown() {
         return fullGrown;
@@ -49,6 +42,10 @@ public class Crop {
 
     public void setAmount(int amount){
         this.amount = amount;
+    }
+
+    public void subtractAmount(int amount) {
+        this.amount -= amount;
     }
 
     public int getCropPerSecond() {

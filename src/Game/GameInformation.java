@@ -9,8 +9,6 @@ public class GameInformation {
     private int pointsPerSecond;
     private int level;
     private String nameOfGame = "Crop Clikker A/S";
-    private String savedMoneyData = "src/Saves/savedMoneyData.csv";
-    private String savedUpgradeData = "src/Saves/savedUpgradeData.csv";
     private String savedDataCSV = "src/Saves/savedData.csv";
     private int unlockedPlotCount;
 
@@ -47,14 +45,6 @@ public class GameInformation {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public String getSavedMoneyDataPath() {
-        return savedMoneyData;
-    }
-
-    public String getSavedUpgradeDataPath() {
-        return savedUpgradeData;
     }
 
     public String getSavedDataPath() {
