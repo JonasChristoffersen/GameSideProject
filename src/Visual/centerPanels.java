@@ -61,11 +61,11 @@ public class centerPanels extends JPanel {
 
         Panels sellHeaderPanel = new Panels(600,30);
         sellHeaderPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
-        sellHeaderPanel.setBackground(Color.RED);
+        sellHeaderPanel.backGroundImg("Assets/GlassPanel.png");
+        sellHeaderPanel.setOpaque(false);
 
         Label sellHeaderLabel = new Label();
         sellHeaderLabel.setText("Welcome to the shop! Here you can sell your crops for $");
-        sellHeaderLabel.setBackground(Color.BLUE);
         sellHeaderPanel.add(sellHeaderLabel);
 
         sellPanel.add(sellHeaderPanel);
@@ -74,14 +74,17 @@ public class centerPanels extends JPanel {
             //Panel pr crop to sell
             Panels cropPanel = new Panels(600, 35);
             cropPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
-            cropPanel.setBackground(Color.GREEN);
+            cropPanel.backGroundImg("Assets/GlassPanel.png");
             cropPanel.setLayout(new BoxLayout(cropPanel, BoxLayout.X_AXIS));
             cropPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            cropPanel.setOpaque(false);
 
             //Name of crop to sell
             Buttons button = new Buttons();
             button.setPreferredSize(cropNameBoxSize);
             button.setText(gameInformation.getCrops().get(i).getName());
+            button.backGroundImg("Assets/ButtonName.png");
+            button.setBorder(BorderFactory.createEmptyBorder());
             makeStretchable(button, cropNameBoxSize);
             cropPanel.add(button);
 
@@ -91,6 +94,8 @@ public class centerPanels extends JPanel {
                 SellCropButton sellCropButton = new SellCropButton(gameInformation.getCrops().get(i), gameInformation, sellAmountNumber[s]);
                 sellCropButton.setPreferredSize(cropSellBoxSize);
                 sellCropButton.setText("Sell " + sellAmountNumber[s] + "x");
+                sellCropButton.backGroundImg("Assets/ButtonSell.png");
+                sellCropButton.setBorder(BorderFactory.createEmptyBorder());
                 makeStretchable(sellCropButton, cropSellBoxSize);
                 cropPanel.add(Box.createHorizontalStrut(5));
                 cropPanel.add(sellCropButton);
@@ -100,6 +105,8 @@ public class centerPanels extends JPanel {
             Buttons infoButton = new Buttons();
             infoButton.setPreferredSize(new Dimension(225, 25));
             infoButton.setText("1x " + gameInformation.getCrops().get(i).getName() + " sells for: 1$");
+            infoButton.backGroundImg("Assets/ButtonInfo.png");
+            infoButton.setBorder(BorderFactory.createEmptyBorder());
             makeStretchable(infoButton, new Dimension(225, 25));
             cropPanel.add(Box.createHorizontalStrut(5));
             cropPanel.add(infoButton);
