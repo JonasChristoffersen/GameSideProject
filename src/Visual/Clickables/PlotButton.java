@@ -20,6 +20,7 @@ public class PlotButton extends Buttons{
     public PlotButton(Plot plot, GameInformation gameInformation, boolean isUnlockeda, boolean isVisible) {
         this.gameInformation = gameInformation;
         this.plot = plot;
+        this.isUnlocked = isUnlockeda;
         this.setVisible(isVisible);
         setText(this.plot.getCrop().getName());
         this.backGroundImg("Assets/FarmLandPlotTexture.png");
@@ -34,7 +35,6 @@ public class PlotButton extends Buttons{
         this.setLayout(new BorderLayout());
         this.setIconTextGap(15);
 
-        this.setText(plot.getCrop().getName());
         this.setVerticalTextPosition(SwingConstants.TOP);
         this.setHorizontalTextPosition(SwingConstants.CENTER);
 
@@ -55,8 +55,8 @@ public class PlotButton extends Buttons{
                 timer.stop();
             }
         });
+        timer.setInitialDelay(0);
         if(isUnlocked) {
-            timer.setInitialDelay(0);
             timer.start();
         }
         this.addActionListener(new ActionListener() {
