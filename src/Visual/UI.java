@@ -203,7 +203,7 @@ public class UI {
 
     public void refreshAllTimer() {
         Timer timer = new Timer();
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("0.0");
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
