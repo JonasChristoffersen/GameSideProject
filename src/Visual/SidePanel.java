@@ -1,11 +1,13 @@
 package Visual;
 
+import Visual.Textures.TexturePNG;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
 public class SidePanel extends Panels implements Scrollable {
-    private static final String defaultTexture = "Assets/stoneWallTexture.png";
+    private static final String defaultTexture = TexturePNG.STONE_WALL;
     private static final int defaultTileScale = 1;
     private static final int gap = 15; //Space between buttons
     private static final int itemWidth = 180;  //Width of buttons/items

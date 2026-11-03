@@ -1,5 +1,7 @@
 package Visual;
 
+import Visual.Textures.TexturePNG;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +21,7 @@ public class Window extends JFrame {
 
         //sets icon of app
         try {
-            Image img = ImageIO.read(new File("Assets/AppIcon.png"));
+            Image img = ImageIO.read(new File(TexturePNG.APP_ICON));
             setIconImage(img);
         } catch (IOException e) {
             System.out.println(e);

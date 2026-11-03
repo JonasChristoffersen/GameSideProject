@@ -6,6 +6,7 @@ import Game.Plot;
 import Saves.SaveManager;
 import Upgrades.Upgrade;
 import Visual.Clickables.*;
+import Visual.Textures.TexturePNG;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +36,7 @@ public class UI {
         this.cropAmount = new ArrayList<>();
         for(Crop p : gameInformation.getCrops()) {
             Buttons button = new Buttons();
-            button.backGroundImg("Assets/SmallStoneButton.png");
+            button.backGroundImg(TexturePNG.SMALL_STONE_BUTTON);
             button.setBorder(BorderFactory.createEmptyBorder());
             button.setForeground(Color.WHITE);
             cropAmount.add(button);
@@ -89,7 +90,7 @@ public class UI {
 
     public Panels makeLevelPanel() {
         Panels levelDisplayPanel = new Panels(150, 40);
-        levelDisplayPanel.backGroundImg("Assets/WoodButtonTexture.png");
+        levelDisplayPanel.backGroundImg(TexturePNG.WOOD_BUTTON);
 
         JLabel levelLabelText = new JLabel();
         levelLabelText.setText("Level");
@@ -111,7 +112,7 @@ public class UI {
 
     public Panels makeMoneyPanel() {
         Panels moneyDisplayPanel = new Panels(150, 40);
-        moneyDisplayPanel.backGroundImg("Assets/WoodButtonTexture.png");
+        moneyDisplayPanel.backGroundImg(TexturePNG.WOOD_BUTTON);
 
         JLabel moneyLabelText = new JLabel();
         moneyLabelText.setText("Money");
@@ -130,18 +131,18 @@ public class UI {
     //TODO: Refactor this to own class
     public Panels createTopPanel() {
         Panels topPanel = new Panels(600, 50);
-        topPanel.backGroundImg("Assets/WoodPanel.png");
+        topPanel.backGroundImg(TexturePNG.WOOD_PANEL);
 
         //Save game button
         Buttons saveButton = new SaveButton(gameInformation, saveManager);
-        saveButton.backGroundImg("Assets/WoodButtonTexture.png");
+        saveButton.backGroundImg(TexturePNG.WOOD_BUTTON);
         saveButton.setForeground(Color.WHITE);
         saveButton.setText("Save Game");
         saveButton.setBorder(BorderFactory.createEmptyBorder());
 
         //Option button
         Buttons optionButton = new OptionButton();
-        optionButton.backGroundImg("Assets/WoodButtonTexture.png");
+        optionButton.backGroundImg(TexturePNG.WOOD_BUTTON);
         optionButton.setForeground(Color.WHITE);
         optionButton.setText("Options/help");
         optionButton.setBorder(BorderFactory.createEmptyBorder());
@@ -158,7 +159,7 @@ public class UI {
         Panels bottomPanel = new Panels(300, 50);
 
         Buttons sellButton = new SellButton(centerPanels);
-        sellButton.backGroundImg("Assets/WoodButtonTexture.png");
+        sellButton.backGroundImg(TexturePNG.WOOD_BUTTON);
         sellButton.setForeground(Color.WHITE);
         sellButton.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -166,7 +167,7 @@ public class UI {
         bottomPanel.add(sellButton, Box.CENTER_ALIGNMENT);
         bottomPanel.add(makeLevelPanel(), Box.RIGHT_ALIGNMENT);
 
-        bottomPanel.backGroundImg("Assets/WoodPanel.png");
+        bottomPanel.backGroundImg(TexturePNG.WOOD_PANEL);
 
         return bottomPanel;
     }
